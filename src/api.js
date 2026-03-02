@@ -1,4 +1,8 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = process.env.REACT_APP_API_BASE;
+
+if (!API_BASE) {
+  console.error("❌ REACT_APP_API_BASE is not defined");
+}
 
 export async function post(path, body) {
   const token = localStorage.getItem("token");
