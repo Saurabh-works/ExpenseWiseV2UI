@@ -1,4 +1,4 @@
-:root{
+/* :root{
   --bg: #f5fbff;
   --surface: rgba(255,255,255,0.78);
   --surface2: rgba(255,255,255,0.60);
@@ -39,7 +39,6 @@ input { font-family: inherit; }
 .link{ color: var(--accent); font-weight: 700; }
 .link:hover{ text-decoration: underline; }
 
-/* Buttons */
 .btn{
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -299,7 +298,6 @@ input { font-family: inherit; }
   height: 100vh;
   display:flex;
   gap: 14px;
-  padding: 14px;
 }
 .sidebar{
   width: 280px;
@@ -378,6 +376,7 @@ input { font-family: inherit; }
   gap: 14px;
   min-width: 0;
 }
+
 .header{
   background: rgba(255,255,255,0.62);
   border: 1px solid var(--border);
@@ -422,7 +421,6 @@ input { font-family: inherit; }
   flex:1;
   min-height: 0;
   overflow:auto;
-  padding: 2px;
 }
 
 .page{ padding: 8px; }
@@ -436,4 +434,4 @@ input { font-family: inherit; }
 .pageCard h2{
   margin: 0 0 8px;
   letter-spacing: -0.2px;
-}
+} */

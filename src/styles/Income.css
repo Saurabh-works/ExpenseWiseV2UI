@@ -1,0 +1,173 @@
+:root {
+  --form-bg: #c4dcec;
+  --form-border: rgba(15, 23, 42, 0.1);
+  --form-muted: rgba(15, 23, 42, 0.6);
+  --form-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
+
+  /* uses your theme variable if present */
+  --form-accent: var(--ts-accent, #00e8aa);
+}
+
+.formPage {
+  min-height: calc(100vh - var(--ts-header-h, 3.75rem));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.formCard {
+  width: 100%;
+  max-width: 34rem;
+  background: var(--form-bg);
+  border: 0.0625rem solid var(--form-border);
+  border-radius: 0.9rem;
+  box-shadow: var(--form-shadow);
+  padding: 1.25rem;
+}
+
+.formHeader {
+  margin-bottom: 1rem;
+}
+
+.formTitle {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.formSub {
+  margin: 0.25rem 0 0 0;
+  color: var(--form-muted);
+  font-size: 0.95rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.input,
+.select {
+  height: 2.75rem;
+  padding: 0 0.85rem;
+  border-radius: 0.65rem;
+  border: 0.0625rem solid var(--form-border);
+  outline: none;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.input:focus,
+.select:focus {
+  border-color: rgba(0, 232, 170, 0.65);
+  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+}
+
+.submitBtn {
+  height: 2.75rem;
+  padding: 0 1.2rem;
+  border-radius: 0.7rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 1rem;
+  background: var(--form-accent);
+  color: #ffffff;
+}
+
+.submitBtn:hover {
+  filter: brightness(0.98);
+}
+
+/* -----------------------------
+   Breakpoints
+-------------------------------- */
+
+/* <= 768 */
+@media (max-width: 48rem) {
+  .formCard {
+    max-width: 30rem;
+    padding: 1.1rem;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* <= 425 */
+@media (max-width: 26.5625rem) {
+  .formPage {
+    padding: 0.75rem;
+  }
+
+  .formTitle {
+    font-size: 1.2rem;
+  }
+
+  .input,
+  .select,
+  .submitBtn {
+    height: 2.6rem;
+  }
+}
+
+/* >= 1024 */
+@media (min-width: 64rem) {
+  .formCard {
+    max-width: 36rem;
+  }
+}
+
+/* >= 1440 */
+@media (min-width: 90rem) {
+  .formCard {
+    max-width: 40rem;
+    padding: 1.5rem;
+  }
+}
+
+/* >= 2560 */
+@media (min-width: 160rem) {
+  .formCard {
+    max-width: 46rem;
+    padding: 1.75rem;
+  }
+
+  .formTitle {
+    font-size: 1.6rem;
+  }
+
+  .input,
+  .select,
+  .submitBtn {
+    height: 3rem;
+    font-size: 1.05rem;
+  }
+}

@@ -1,0 +1,427 @@
+:root {
+  /* TrueSendr vibe */
+  --ts-accent: #00e8aa;
+  --ts-accent-2: #7dc4b1;
+
+  --ts-bg: #ffffff;
+  --ts-sidebar-bg: #d8fbec; /* light peach */
+  --ts-header-bg: #386077;
+
+  --ts-text: #0f172a;
+  --ts-muted: rgba(15, 23, 42, 0.6);
+  --ts-border: rgba(15, 23, 42, 0.08);
+
+  --ts-sidebar-w: 16.5rem;
+  --ts-header-h: 3.75rem;
+
+  --ts-radius: 0.65rem;
+  --ts-radius-pill: 0.75rem;
+
+  --ts-pad: 1rem;
+}
+
+/* base */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ts-bg); color: var(--ts-text); }
+
+
+/* -----------------------------
+   App Layout (Sidebar + Header + Content)
+   Clean, no extra fluff
+-------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+/* main shell */
+.appShell {
+  height: 100vh;
+  display: flex;
+  background: var(--ts-bg);
+  overflow: hidden; /* stops body scroll + weird gaps */
+}
+
+/* right side (header + content) */
+.appMain {
+  flex: 1;
+  min-width: 0; /* critical for truncation + preventing overflow */
+  display: flex;
+  flex-direction: column;
+  background: var(--ts-bg);
+}
+
+/* page content area */
+.appContent {
+  flex: 1;
+  min-height: 0; /* allows scrolling inside */
+  overflow: auto;
+
+  /* TrueSendr has very light spacing, not big padding */
+  padding: 1.25rem;
+}
+
+/* Optional: nicer scrollbar (kept minimal) */
+.appContent::-webkit-scrollbar {
+  width: 0.75rem;
+}
+.appContent::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.12);
+  border-radius: 999rem;
+}
+
+/* -----------------------------
+   Breakpoints
+-------------------------------- */
+
+/* <= 1024 */
+@media (max-width: 64rem) {
+  .appContent {
+    padding: 1rem;
+  }
+}
+
+/* <= 768 */
+@media (max-width: 48rem) {
+  .appContent {
+    padding: 0.9rem;
+  }
+}
+
+/* <= 425 */
+@media (max-width: 26.5625rem) {
+  .appContent {
+    padding: 0.75rem;
+  }
+
+  /* hide username earlier so header stays clean */
+  .tsUserName {
+    display: none;
+  }
+}
+
+/* >= 1440 */
+@media (min-width: 90rem) {
+  .appContent {
+    padding: 1.5rem;
+  }
+}
+
+/* >= 2560 */
+@media (min-width: 160rem) {
+  .appContent {
+    padding: 2rem;
+  }
+}
+
+/* -----------------------------
+   Header (flat, minimal)
+-------------------------------- */
+.tsHeader {
+  height: var(--ts-header-h);
+  background: var(--ts-header-bg);
+  border-bottom: 0.0625rem solid var(--ts-border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 1.25rem;
+}
+
+.tsMuiIcon {
+  font-size: 1.45rem !important;
+}
+
+.tsUserNameOnly {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color:white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 14rem;
+}
+
+.tsHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.tsHeaderTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+}
+
+.tsHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* hamburger */
+.tsHamburger {
+  display: none !important;
+}
+
+/* icon button (simple, not “cardy”) */
+.tsIconBtn {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 0.6rem;
+  border: 0.0625rem solid var(--ts-border);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* user + logout */
+.tsUser {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.6rem;
+  border: 0.0625rem solid var(--ts-border);
+  border-radius: 999rem;
+  background: #fff;
+  max-width: 14rem;
+}
+
+.tsUserAvatar {
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 999rem;
+  background: rgba(255, 106, 0, 0.15);
+  color: var(--ts-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.tsUserName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tsBtn {
+  height: 2.25rem;
+  padding: 0 0.95rem;
+  border-radius: 0.65rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.tsBtnPrimary {
+  background: var(--ts-accent);
+  color: #fff;
+}
+.tsBtnPrimary:hover { background: var(--ts-accent-2); }
+
+/* -----------------------------
+   Sidebar (TrueSendr simple)
+-------------------------------- */
+.tsSidebar {
+  width: var(--ts-sidebar-w);
+  height: 100vh;
+  background: var(--ts-sidebar-bg);
+
+  border-right: 0.0625rem solid rgba(255, 106, 0, 0.16);
+
+  display: flex;
+  flex-direction: column;
+
+  position: sticky;
+  top: 0;
+  z-index: 30;
+
+  /* IMPORTANT: remove "surrounded padding" feel */
+  padding: 0;
+}
+
+.tsSidebarTop {
+  padding: 1.15rem 1rem 0.9rem 1rem;
+}
+
+.tsBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  position: relative;
+}
+
+.tsBrandName {
+  color: var(--ts-accent);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.tsBrandTag {
+  font-size: 0.9rem;
+  color: rgba(15, 23, 42, 0.55);
+}
+
+.tsNav {
+  padding: 0.5rem 0.75rem 1rem 0.75rem; /* small, not “boxed” */
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tsNavItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  text-decoration: none;
+  color: rgba(15, 23, 42, 0.8);
+
+  height: 2.5rem;
+  padding: 0 0.75rem;
+
+  border-radius: 0.55rem; /* subtler than before */
+  border: 0.0625rem solid transparent;
+}
+
+.tsNavIcon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.55rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.tsNavLabel {
+  font-weight: 800;
+  font-size: 0.98rem;
+}
+
+/* Active = strong orange pill like TrueSendr */
+.tsNavItem.isActive {
+  background: var(--ts-accent);
+  color: #ffffff;
+}
+
+.tsNavItem.isActive .tsNavIcon {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.tsNavItem.isActive .tsMuiIcon {
+  color: #ffffff !important;
+}
+/* hover = subtle */
+.tsNavItem:hover {
+  background: rgba(0, 232, 170, 0.14);
+}
+
+.tsNavItem.isActive:hover {
+  background: var(--ts-accent);
+}
+
+/* Close button (mobile only) */
+.tsSidebarClose {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Overlay */
+.tsOverlay { display: none; }
+
+/* -----------------------------
+   Responsive breakpoints
+-------------------------------- */
+
+/* <= 1024 */
+@media (max-width: 64rem) {
+  :root { --ts-sidebar-w: 15.5rem; }
+}
+
+/* <= 768: sidebar becomes drawer */
+@media (max-width: 48rem) {
+  .tsHamburger {
+    display: inline-flex !important;
+  }
+
+  .tsSidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-105%);
+    transition: transform 180ms ease;
+  }
+
+  .tsSidebar.isOpen { transform: translateX(0); }
+
+  .tsOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.45);
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+    z-index: 25;
+  }
+
+  .tsOverlay.isOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .tsSidebarClose { display: inline-flex; }
+}
+
+/* <= 425 */
+@media (max-width: 26.5625rem) {
+  .tsHeader { padding: 0 0.85rem; }
+  .tsUser { max-width: 10rem; }
+  .tsUserNameOnly {
+    max-width: 8rem;
+  }
+}
+
+/* >= 1440 */
+@media (min-width: 90rem) {
+  :root { --ts-sidebar-w: 17.5rem; }
+  .tsHeaderTitle { font-size: 1.12rem; }
+}
+
+/* >= 2560 */
+@media (min-width: 160rem) {
+  :root {
+    --ts-sidebar-w: 19rem;
+    --ts-header-h: 4.1rem;
+  }
+  .tsHeaderTitle { font-size: 1.25rem; }
+  .tsBtn { height: 2.5rem; }
+  .tsIconBtn { height: 2.5rem; width: 2.5rem; }
+}
