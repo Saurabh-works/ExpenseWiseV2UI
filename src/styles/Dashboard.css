@@ -1,0 +1,293 @@
+:root {
+  --dash-bg: #c4dcec;
+  --dash-border: rgba(15, 23, 42, 0.1);
+  --dash-muted: rgba(15, 23, 42, 0.6);
+  --dash-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
+  --dash-accent: var(--ts-accent, #00e8aa);
+}
+
+.dashPage {
+  min-height: calc(100vh - var(--ts-header-h, 3.75rem));
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.dashCard {
+  width: 100%;
+  max-width: 62rem;
+  background: var(--dash-bg);
+  border: 0.0625rem solid var(--dash-border);
+  border-radius: 0.9rem;
+  box-shadow: var(--dash-shadow);
+  padding: 1.25rem;
+}
+
+.dashHeader {
+  margin-bottom: 1rem;
+}
+
+.dashTitle {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.dashSub {
+  margin: 0.25rem 0 0 0;
+  color: var(--dash-muted);
+  font-size: 0.95rem;
+}
+
+.dashMsg {
+  margin-bottom: 0.85rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.7rem;
+  border: 0.0625rem solid var(--dash-border);
+  background: rgba(255, 255, 255, 0.55);
+  font-weight: 700;
+}
+
+.dashErr {
+  color: crimson;
+}
+
+.dashInfo {
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.dashSection {
+  margin-top: 1rem;
+}
+
+.dashSectionHead {
+  margin-bottom: 0.75rem;
+}
+
+.dashRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dashH3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.dashFilter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 10rem;
+}
+
+.dashFilters2 {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.dashLabel {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.dashSelect {
+  height: 2.6rem;
+  padding: 0 0.85rem;
+  border-radius: 0.65rem;
+  border: 0.0625rem solid var(--dash-border);
+  outline: none;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.dashSelect:focus {
+  border-color: rgba(0, 232, 170, 0.65);
+  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
+}
+
+.dashTableWrap {
+  width: 100%;
+  overflow: auto;
+  border-radius: 0.85rem;
+  border: 0.0625rem solid var(--dash-border);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.dashTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 52rem;
+}
+
+.dashTable thead th {
+  text-align: left;
+  padding: 0.85rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  border-bottom: 0.0625rem solid var(--dash-border);
+}
+
+.dashTable tbody td {
+  padding: 0.8rem 0.9rem;
+  border-bottom: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  font-size: 0.95rem;
+}
+
+.dashTable tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.emptyCell {
+  text-align: center;
+  color: var(--dash-muted);
+  font-weight: 800;
+  padding: 1.2rem 0.9rem;
+}
+
+.amt {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.desc {
+  max-width: 22rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.typeExpense {
+  font-weight: 900;
+  color: rgba(220, 38, 38, 0.9);
+  text-transform: capitalize;
+}
+
+.typeIncome {
+  font-weight: 900;
+  color: rgba(16, 185, 129, 0.95);
+  text-transform: capitalize;
+}
+
+.dashChartCard {
+  border-radius: 0.85rem;
+  border: 0.0625rem solid var(--dash-border);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 1rem;
+  overflow: auto;
+}
+
+.dashTotals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.totalBox {
+  border-radius: 0.85rem;
+  border: 0.0625rem solid var(--dash-border);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 1rem;
+}
+
+.totalLabel {
+  font-weight: 900;
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.totalValue {
+  margin-top: 0.35rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.totalMeta {
+  margin-top: 0.25rem;
+  color: var(--dash-muted);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+/* <= 1024 */
+@media (max-width: 64rem) {
+  .dashCard {
+    max-width: 54rem;
+  }
+}
+
+/* <= 768 */
+@media (max-width: 48rem) {
+  .dashCard {
+    max-width: 44rem;
+    padding: 1.1rem;
+  }
+
+  .dashTable {
+    min-width: 46rem;
+  }
+
+  .dashTotals {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* <= 425 */
+@media (max-width: 26.5625rem) {
+  .dashPage {
+    padding: 0.75rem;
+  }
+
+  .dashTitle {
+    font-size: 1.2rem;
+  }
+
+  .dashSelect {
+    height: 2.5rem;
+  }
+
+  .dashTable {
+    min-width: 44rem;
+  }
+}
+
+/* >= 1440 */
+@media (min-width: 90rem) {
+  .dashCard {
+    max-width: 68rem;
+    padding: 1.5rem;
+  }
+
+  .dashTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* >= 2560 */
+@media (min-width: 160rem) {
+  .dashCard {
+    max-width: 82rem;
+    padding: 1.75rem;
+  }
+
+  .dashTitle {
+    font-size: 1.7rem;
+  }
+
+  .dashSelect {
+    height: 3rem;
+    font-size: 1.05rem;
+  }
+
+  .totalValue {
+    font-size: 1.6rem;
+  }
+}

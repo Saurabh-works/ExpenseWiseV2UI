@@ -1,0 +1,346 @@
+:root {
+  --rep-bg: #c4dcec;
+  --rep-border: rgba(15, 23, 42, 0.1);
+  --rep-muted: rgba(15, 23, 42, 0.6);
+  --rep-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
+  --rep-accent: var(--ts-accent, #00e8aa);
+}
+
+.reportPage {
+  min-height: calc(100vh - var(--ts-header-h, 3.75rem));
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.reportCard {
+  width: 100%;
+  max-width: 58rem;
+  background: var(--rep-bg);
+  border: 0.0625rem solid var(--rep-border);
+  border-radius: 0.9rem;
+  box-shadow: var(--rep-shadow);
+  padding: 1.25rem;
+}
+
+.reportHeader {
+  margin-bottom: 1rem;
+}
+
+.reportTitle {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.reportSub {
+  margin: 0.25rem 0 0 0;
+  color: var(--rep-muted);
+  font-size: 0.95rem;
+}
+
+.reportMsg {
+  margin-bottom: 0.85rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.7rem;
+  border: 0.0625rem solid var(--rep-border);
+  background: rgba(255, 255, 255, 0.55);
+  font-weight: 700;
+}
+
+.reportErr {
+  color: crimson;
+}
+
+.reportInfo {
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.reportFilters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 0.85rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+.reportField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.reportLabel {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.reportSelect {
+  height: 2.75rem;
+  padding: 0 0.85rem;
+  border-radius: 0.65rem;
+  border: 0.0625rem solid var(--rep-border);
+  outline: none;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.reportSelect:focus {
+  border-color: rgba(0, 232, 170, 0.65);
+  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
+}
+
+.reportActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reportSubmit {
+  height: 2.75rem;
+  padding: 0 1.2rem;
+  border-radius: 0.7rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 1rem;
+  background: var(--rep-accent);
+  color: #ffffff;
+}
+
+.reportSubmit:hover {
+  filter: brightness(0.98);
+}
+
+.reportTableWrap {
+  width: 100%;
+  overflow: auto;
+  border-radius: 0.85rem;
+  border: 0.0625rem solid var(--rep-border);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.reportTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 42rem;
+}
+
+.reportTable thead th {
+  text-align: left;
+  padding: 0.85rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  border-bottom: 0.0625rem solid var(--rep-border);
+}
+
+.reportTable tbody td,
+.reportTable tfoot td {
+  padding: 0.8rem 0.9rem;
+  border-bottom: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  font-size: 0.95rem;
+}
+
+.reportTable tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.reportTable .amt {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.reportTable .desc {
+  max-width: 26rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emptyCell {
+  text-align: center;
+  color: var(--rep-muted);
+  font-weight: 800;
+  padding: 1.2rem 0.9rem;
+}
+
+.tfootLabel {
+  text-align: right;
+  font-weight: 900;
+}
+
+.tfootAmt {
+  font-weight: 900;
+}
+
+.reportBottom {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.pagerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.pageSize {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pageSizeLabel {
+  font-weight: 900;
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.pageSizeSelect {
+  height: 2.4rem;
+  padding: 0 0.75rem;
+  border-radius: 0.65rem;
+  border: 0.0625rem solid var(--rep-border);
+  background: #fff;
+  font-weight: 800;
+}
+
+.pageInfo {
+  color: rgba(15, 23, 42, 0.85);
+  font-weight: 800;
+}
+
+.pageBtns {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.iconBtn {
+  height: 2.4rem;
+  width: 2.6rem;
+  border-radius: 0.65rem;
+  border: 0.0625rem solid var(--rep-border);
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.downloadBtn {
+  height: 2.75rem;
+  padding: 0 1.2rem;
+  border-radius: 0.7rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 1rem;
+  background: var(--rep-accent);
+  color: #ffffff;
+}
+
+.downloadBtn:hover {
+  filter: brightness(0.98);
+}
+
+/* -----------------------------
+   Breakpoints
+-------------------------------- */
+
+/* <= 1024 */
+@media (max-width: 64rem) {
+  .reportCard {
+    max-width: 52rem;
+  }
+  .reportFilters {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .reportActions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}
+
+/* <= 768 */
+@media (max-width: 48rem) {
+  .reportCard {
+    max-width: 44rem;
+    padding: 1.1rem;
+  }
+
+  .reportFilters {
+    grid-template-columns: 1fr;
+  }
+
+  .reportSubmit {
+    width: 100%;
+  }
+
+  .reportTable {
+    min-width: 36rem;
+  }
+}
+
+/* <= 425 */
+@media (max-width: 26.5625rem) {
+  .reportPage {
+    padding: 0.75rem;
+  }
+
+  .reportTitle {
+    font-size: 1.2rem;
+  }
+
+  .reportSelect,
+  .reportSubmit,
+  .downloadBtn {
+    height: 2.6rem;
+  }
+
+  .reportTable {
+    min-width: 34rem;
+  }
+}
+
+/* >= 1440 */
+@media (min-width: 90rem) {
+  .reportCard {
+    max-width: 64rem;
+    padding: 1.5rem;
+  }
+
+  .reportTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* >= 2560 */
+@media (min-width: 160rem) {
+  .reportCard {
+    max-width: 78rem;
+    padding: 1.75rem;
+  }
+
+  .reportTitle {
+    font-size: 1.7rem;
+  }
+
+  .reportSelect,
+  .reportSubmit,
+  .downloadBtn {
+    height: 3rem;
+    font-size: 1.05rem;
+  }
+}
