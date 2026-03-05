@@ -109,3 +109,17 @@
 .authLink:hover {
   text-decoration: underline;
 }
+
+.authBtn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.authInput:disabled {
+  opacity: 0.85;
+}
+
+.authLink.isDisabled {
+  pointer-events: none;
+  opacity: 0.6;
+}

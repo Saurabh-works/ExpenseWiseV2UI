@@ -11,10 +11,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return; // ✅ safety
     setError("");
+    setLoading(true);
 
     try {
       const res = await post("/auth/login", { email, password });
@@ -22,10 +25,11 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
 
-      login(); // ✅ THIS is the missing piece
+      login();
       nav("/app/dashboard", { replace: true });
     } catch (err) {
       setError(err?.message || "Login failed");
+      setLoading(false);
     }
   };
 
@@ -48,6 +52,7 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
               required
+              disabled={loading}
             />
           </label>
 
@@ -61,17 +66,21 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
               required
+              disabled={loading}
             />
           </label>
 
-          <button className="authBtn" type="submit">
-            Login
+          <button className="authBtn" type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
         <div className="authSwitch">
           <span>Don’t have an account?</span>
-          <Link className="authLink" to="/signup">
+          <Link
+            className={`authLink ${loading ? "isDisabled" : ""}`}
+            to="/signup"
+          >
             Sign up
           </Link>
         </div>
