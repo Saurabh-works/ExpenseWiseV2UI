@@ -59,6 +59,27 @@ const knownExpenseCategories = [
   "Other",
 ];
 
+const categoryColorMap = {
+  Housing: "#FF6B6B",
+  Groceries: "#4D96FF",
+  Food: "#FFD93D",
+  "Outside food": "#FF922B",
+  Fuel: "#845EF7",
+  "Public Transport": "#20C997",
+  Bills: "#74C0FC",
+  Healthcare: "#FF8787",
+  "Spend on other": "#ADB5BD",
+  Learning: "#94D82D",
+  "Personal Care": "#F783AC",
+  Entertainment: "#9775FA",
+  Shopping: "#5C7CFA",
+  "Gifts & Donations": "#63E6BE",
+  Investments: "#51CF66",
+  "Loan / EMI": "#FF8FA3",
+  Savings: "#22B8CF",
+  Other: "#868E96",
+};
+
 function nowYearMonth() {
   const d = new Date();
   return { year: d.getFullYear(), month: d.getMonth() + 1 };
@@ -249,7 +270,9 @@ export default function Dashboard() {
   const pieValues = allCats.map((c) => Number(expenseByCategory[c] || 0));
   const pieTotal = pieValues.reduce((a, b) => a + b, 0);
 
-  const pieColors = allCats.map((c) => `hsl(${hashHue(c)} 80% 55%)`);
+  const fallbackColor = (c) => `hsl(${hashHue(c)} 80% 55%)`; // for unknown categories
+
+  const pieColors = allCats.map((c) => categoryColorMap[c] || fallbackColor(c));
 
   const pieData = {
     labels: allCats,
@@ -265,11 +288,12 @@ export default function Dashboard() {
     ],
   };
 
+
   const categoryRows = React.useMemo(() => {
     return allCats.map((c) => ({
       name: c,
       value: Number(expenseByCategory[c] || 0),
-      hue: hashHue(c),
+      color: categoryColorMap[c] || fallbackColor(c),
     }));
   }, [allCats, expenseByCategory]);
 
@@ -427,7 +451,7 @@ export default function Dashboard() {
                       <div className="catLeft">
                         <span
                           className="catDot"
-                          style={{ background: `hsl(${r.hue} 80% 55%)` }}
+                          style={{ background: r.color }}
                         />
                         <span className="catName">{r.name}</span>
                       </div>

@@ -1,115 +1,328 @@
-:root {
-  --form-bg: #c4dcec;
-  --form-border: rgba(15, 23, 42, 0.1);
-  --form-muted: rgba(15, 23, 42, 0.6);
-  --form-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
+/* src/styles/Income.css */
 
-  /* uses your theme variable if present */
-  --form-accent: var(--ts-accent, #00e8aa);
+:root {
+  --in-bg: #c4dcec;
+  --in-border: rgba(15, 23, 42, 0.1);
+  --in-muted: rgba(15, 23, 42, 0.6);
+  --in-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
+  --in-accent: var(--ts-accent, #00e8aa);
+
+  --in-radius: 0.9rem;
+  --in-gap: 0.85rem;
+  --in-pad: 1rem;
+  --in-card-h: 85vh;
 }
 
-.formPage {
+/* Page wrapper */
+.inPage {
   min-height: calc(100vh - var(--ts-header-h, 3.75rem));
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
-.formCard {
+/* Main card */
+.inCard {
   width: 100%;
-  max-width: 34rem;
-  background: var(--form-bg);
-  border: 0.0625rem solid var(--form-border);
-  border-radius: 0.9rem;
-  box-shadow: var(--form-shadow);
-  padding: 1.25rem;
+  max-width: 66rem;
+  height: var(--in-card-h);
+  position: relative;
+
+  background: var(--in-bg);
+  border: 0.0625rem solid var(--in-border);
+  border-radius: var(--in-radius);
+  box-shadow: var(--in-shadow);
+  padding: var(--in-pad);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.formHeader {
-  margin-bottom: 1rem;
+/* Header */
+.inHeader {
+  margin-bottom: 0.75rem;
+  flex: 0 0 auto;
 }
 
-.formTitle {
+.inTitle {
   margin: 0;
   font-size: 1.35rem;
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-.formSub {
+.inSub {
   margin: 0.25rem 0 0 0;
-  color: var(--form-muted);
+  color: var(--in-muted);
   font-size: 0.95rem;
 }
 
-.formGrid {
+/* ✅ Top-center toast */
+.inToastWrap {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: min(15rem, calc(100% - 2rem));
+  pointer-events: none;
+}
+
+.inToast {
+  pointer-events: auto;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--in-border);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.12);
+  font-weight: 700;
+  text-align: center;
+
+  animation: inToastIn 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  will-change: transform, opacity;
+}
+
+.inToast.isOk {
+  color: rgba(16, 185, 129, 0.95);
+}
+
+.inToast.isErr {
+  color: crimson;
+}
+
+@keyframes inToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Layout */
+.inLayout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--in-gap);
+  align-items: stretch;
+
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Inner cards */
+.inFormCard,
+.inQuickCard {
+  border-radius: 0.85rem;
+  border: 0.0625rem solid var(--in-border);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 0.95rem;
+
+  height: 100%;
+  min-height: 0;
+}
+
+/* LEFT */
+.inFormCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.inFormGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.9rem;
+
+  overflow: auto;
+  min-height: 0;
+  padding-right: 0.25rem;
+
+  scrollbar-width: thin;
 }
 
-.field {
+.inFormGrid::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.inFormGrid::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.16);
+  border-radius: 999rem;
+}
+.inFormGrid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.inField {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
-.fieldFull {
+.inFull {
   grid-column: 1 / -1;
 }
 
-.label {
-  font-size: 0.9rem;
-  font-weight: 700;
+.inLabel {
+  font-size: 0.92rem;
+  font-weight: 600;
   color: rgba(15, 23, 42, 0.85);
 }
 
-.input,
-.select {
+.inInput {
   height: 2.75rem;
   padding: 0 0.85rem;
   border-radius: 0.65rem;
-  border: 0.0625rem solid var(--form-border);
+  border: 0.0625rem solid var(--in-border);
   outline: none;
   font-size: 1rem;
   background: #fff;
 }
 
-.input:focus,
-.select:focus {
+.inInput:focus {
   border-color: rgba(0, 232, 170, 0.65);
   box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
 }
 
-.actions {
+.inActions {
   grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
   margin-top: 0.25rem;
+
+  position: sticky;
+  bottom: 0;
+  padding-top: 0.5rem;
+  background: transparent;
 }
 
-.submitBtn {
+.inSubmit {
   height: 2.75rem;
   padding: 0 1.2rem;
   border-radius: 0.7rem;
   border: none;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1rem;
-  background: var(--form-accent);
+  background: var(--in-accent);
   color: #ffffff;
 }
-
-.submitBtn:hover {
+.inSubmit:hover {
   filter: brightness(0.98);
 }
 
-/* react-select styling to match your inputs */
+/* RIGHT */
+.inQuickCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.inQuickHead {
+  flex: 0 0 auto;
+  margin-bottom: 0.75rem;
+}
+
+.inQuickTitle {
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.9);
+  margin-bottom: 0.25rem;
+}
+
+.inQuickSub {
+  color: var(--in-muted);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.inQuickScroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+
+  scrollbar-width: thin;
+}
+
+.inQuickScroll::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.inQuickScroll::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.18);
+  border-radius: 999rem;
+}
+.inQuickScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.inQuickGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+.inQuickBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  text-align: left;
+}
+
+.inQuickBtn:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.inQuickBtn.isActive {
+  border-color: rgba(0, 232, 170, 0.5);
+  box-shadow: 0 0 0 0.18rem rgba(0, 232, 170, 0.12);
+}
+
+.inQuickEmoji {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 232, 170, 0.14);
+  flex: 0 0 auto;
+  font-size: 1.1rem;
+}
+
+.inQuickLabel {
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inQuickHint {
+  flex: 0 0 auto;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  color: var(--in-muted);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* react-select */
 .rs__control {
   min-height: 2.75rem !important;
   border-radius: 0.65rem !important;
-  border: 0.0625rem solid var(--form-border) !important;
+  border: 0.0625rem solid var(--in-border) !important;
   box-shadow: none !important;
 }
 
@@ -118,78 +331,131 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12) !important;
 }
 
+.rs__value-container {
+  padding: 0 0.85rem !important;
+}
+
 .rs__menu {
   border-radius: 0.65rem !important;
   overflow: hidden;
 }
 
 .rs__menu-list {
-  max-height: 220px !important; /* same as maxMenuHeight */
+  max-height: 13.75rem !important;
 }
 
-/* -----------------------------
-   Breakpoints
--------------------------------- */
-
-/* <= 768 */
-@media (max-width: 48rem) {
-  .formCard {
-    max-width: 30rem;
-    padding: 1.1rem;
+/* ---------------- Breakpoints ---------------- */
+@media (min-width: 160rem) {
+  :root {
+    --in-pad: 1.5rem;
+    --in-gap: 1rem;
   }
 
-  .formGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* <= 425 */
-@media (max-width: 26.5625rem) {
-  .formPage {
-    padding: 0.75rem;
+  .inCard {
+    max-width: 90rem;
   }
 
-  .formTitle {
+  .inTitle {
+    font-size: 1.8rem;
+  }
+
+  .inSub {
+    font-size: 1.05rem;
+  }
+
+  .inInput,
+  .inSubmit {
+    height: 3.1rem;
+    font-size: 1.05rem;
+  }
+
+  .inQuickEmoji {
+    width: 2.25rem;
+    height: 2.25rem;
     font-size: 1.2rem;
   }
+}
 
-  .input,
-  .select,
-  .submitBtn {
+@media (min-width: 90rem) and (max-width: 159.9375rem) {
+  :root {
+    --in-pad: 1.25rem;
+  }
+
+  .inCard {
+    max-width: 72rem;
+  }
+
+  .inTitle {
+    font-size: 1.55rem;
+  }
+}
+
+@media (max-width: 64rem) {
+  .inCard {
+    max-width: 54rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .inPage {
+    padding: 0.6rem;
+  }
+
+  .inCard {
+    max-width: 44rem;
+    height: auto;
+    min-height: 90vh;
+  }
+
+  .inLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .inFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .inActions {
+    justify-content: stretch;
+  }
+
+  .inSubmit {
+    width: 100%;
+  }
+
+  .inQuickGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 26.5625rem) {
+  .inPage {
+    padding: 0.5rem;
+  }
+
+  .inCard {
+    padding: 0.85rem;
+    min-height: 92vh;
+  }
+
+  .inTitle {
+    font-size: 1.22rem;
+  }
+
+  .inSub {
+    font-size: 0.92rem;
+  }
+
+  .inInput,
+  .inSubmit {
     height: 2.6rem;
   }
-}
 
-/* >= 1024 */
-@media (min-width: 64rem) {
-  .formCard {
-    max-width: 36rem;
-  }
-}
-
-/* >= 1440 */
-@media (min-width: 90rem) {
-  .formCard {
-    max-width: 40rem;
-    padding: 1.5rem;
-  }
-}
-
-/* >= 2560 */
-@media (min-width: 160rem) {
-  .formCard {
-    max-width: 46rem;
-    padding: 1.75rem;
+  .inQuickGrid {
+    grid-template-columns: 1fr;
   }
 
-  .formTitle {
-    font-size: 1.6rem;
-  }
-
-  .input,
-  .select,
-  .submitBtn {
-    height: 3rem;
-    font-size: 1.05rem;
+  .inQuickBtn {
+    padding: 0.6rem 0.65rem;
   }
 }

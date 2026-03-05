@@ -140,7 +140,7 @@ body {
 
 .tsUserNameOnly {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 500;
   color:white;
   white-space: nowrap;
   overflow: hidden;
@@ -157,7 +157,7 @@ body {
 
 .tsHeaderTitle {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.02em;
   white-space: nowrap;
   overflow: hidden;
@@ -210,13 +210,13 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
+  font-weight: 500;
   font-size: 0.8rem;
 }
 
 .tsUserName {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -228,7 +228,7 @@ body {
   border-radius: 0.65rem;
   border: none;
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .tsBtnPrimary {
@@ -272,7 +272,7 @@ body {
 .tsBrandName {
   color: var(--ts-accent);
   font-size: 1.35rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
@@ -317,7 +317,7 @@ body {
 }
 
 .tsNavLabel {
-  font-weight: 800;
+  font-weight: 500;
   font-size: 0.98rem;
 }
 
