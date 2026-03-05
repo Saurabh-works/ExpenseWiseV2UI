@@ -1,6 +1,8 @@
+// src/pages/Report.js (or wherever your Report component lives)
 import React from "react";
 import "../styles/Report.css";
 import { get } from "../api";
+import Select from "react-select";
 
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -25,6 +27,11 @@ const monthOptions = [
   { value: 12, label: "December" },
 ];
 
+const typeOptions = [
+  { value: "income", label: "Income" },
+  { value: "expense", label: "Expense" },
+];
+
 function formatINR(n) {
   const num = Number(n || 0);
   return num.toLocaleString("en-IN", { maximumFractionDigits: 2 });
@@ -35,10 +42,10 @@ export default function Report() {
 
   const [year, setYear] = React.useState(curYear);
   const [month, setMonth] = React.useState(curMonth);
-  const [type, setType] = React.useState("expense"); // default expense
+  const [type, setType] = React.useState("expense");
 
   const [page, setPage] = React.useState(1);
-  const [limit, setLimit] = React.useState(10);
+  const [limit, setLimit] = React.useState(5);
 
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
@@ -47,6 +54,19 @@ export default function Report() {
   const [totalRecords, setTotalRecords] = React.useState(0);
 
   const totalPages = Math.max(1, Math.ceil(totalRecords / limit));
+
+  const years = React.useMemo(() => {
+    const start = curYear - 5;
+    const end = curYear + 1;
+    const arr = [];
+    for (let y = end; y >= start; y--) arr.push(y);
+    return arr;
+  }, [curYear]);
+
+  const yearOptions = React.useMemo(
+    () => years.map((y) => ({ value: y, label: String(y) })),
+    [years]
+  );
 
   const fetchReport = React.useCallback(
     async (opts = {}) => {
@@ -70,7 +90,7 @@ export default function Report() {
 
         const res = await get(`/report?${qs.toString()}`);
 
-        // ✅ FIX: backend returns { ok, data }, not { data: { data: ... } }
+        // backend returns { ok, data }
         const data = res?.data;
 
         setItems(data?.items || []);
@@ -92,31 +112,10 @@ export default function Report() {
     fetchReport();
   }, [year, month, type, page, limit, fetchReport]);
 
-  const years = React.useMemo(() => {
-    const start = curYear - 5;
-    const end = curYear + 1;
-    const arr = [];
-    for (let y = end; y >= start; y--) arr.push(y);
-    return arr;
-  }, [curYear]);
-
   const onSubmit = (e) => {
     e.preventDefault();
     setPage(1);
     fetchReport({ page: 1 });
-  };
-
-  const onChangeYear = (v) => {
-    setYear(Number(v));
-    setPage(1);
-  };
-  const onChangeMonth = (v) => {
-    setMonth(Number(v));
-    setPage(1);
-  };
-  const onChangeType = (v) => {
-    setType(v);
-    setPage(1);
   };
 
   const canPrev = page > 1;
@@ -133,8 +132,6 @@ export default function Report() {
       });
 
       const token = localStorage.getItem("token");
-
-      // ✅ FIX: use same env var as your api.js uses
       const base = process.env.REACT_APP_API_BASE || "";
       const url = `${base}/report/download?${qs.toString()}`;
 
@@ -179,51 +176,60 @@ export default function Report() {
             <label className="reportLabel" htmlFor="rep-year">
               Year
             </label>
-            <select
-              id="rep-year"
-              className="reportSelect"
-              value={year}
-              onChange={(e) => onChangeYear(e.target.value)}
-            >
-              {years.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
+            <Select
+              inputId="rep-year"
+              classNamePrefix="rs"
+              options={yearOptions}
+              value={yearOptions.find((o) => o.value === year) || null}
+              onChange={(opt) => {
+                setYear(opt?.value ?? curYear);
+                setPage(1);
+              }}
+              placeholder="Select year"
+              menuPlacement="bottom"
+              menuPosition="fixed"
+              maxMenuHeight={220}
+            />
           </div>
 
           <div className="reportField">
             <label className="reportLabel" htmlFor="rep-month">
               Month
             </label>
-            <select
-              id="rep-month"
-              className="reportSelect"
-              value={month}
-              onChange={(e) => onChangeMonth(e.target.value)}
-            >
-              {monthOptions.map((m) => (
-                <option key={m.value} value={m.value}>
-                  {m.label}
-                </option>
-              ))}
-            </select>
+            <Select
+              inputId="rep-month"
+              classNamePrefix="rs"
+              options={monthOptions}
+              value={monthOptions.find((o) => o.value === month) || null}
+              onChange={(opt) => {
+                setMonth(opt?.value ?? curMonth);
+                setPage(1);
+              }}
+              placeholder="Select month"
+              menuPlacement="bottom"
+              menuPosition="fixed"
+              maxMenuHeight={220}
+            />
           </div>
 
           <div className="reportField">
             <label className="reportLabel" htmlFor="rep-type">
               Type
             </label>
-            <select
-              id="rep-type"
-              className="reportSelect"
-              value={type}
-              onChange={(e) => onChangeType(e.target.value)}
-            >
-              <option value="income">Income</option>
-              <option value="expense">Expense</option>
-            </select>
+            <Select
+              inputId="rep-type"
+              classNamePrefix="rs"
+              options={typeOptions}
+              value={typeOptions.find((o) => o.value === type) || null}
+              onChange={(opt) => {
+                setType(opt?.value ?? "expense");
+                setPage(1);
+              }}
+              placeholder="Select type"
+              menuPlacement="bottom"
+              menuPosition="fixed"
+              maxMenuHeight={220}
+            />
           </div>
 
           <div className="reportActions">
@@ -288,7 +294,7 @@ export default function Report() {
                   setPage(1);
                 }}
               >
-                {[5, 10, 20, 50].map((n) => (
+                {[5, 10, 20, 50, 100].map((n) => (
                   <option key={n} value={n}>
                     {n}
                   </option>

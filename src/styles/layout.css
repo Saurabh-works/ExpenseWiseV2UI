@@ -63,7 +63,7 @@ body {
   overflow: auto;
 
   /* TrueSendr has very light spacing, not big padding */
-  padding: 1.25rem;
+  padding: 0.50rem;
 }
 
 /* Optional: nicer scrollbar (kept minimal) */
@@ -96,7 +96,7 @@ body {
 /* <= 425 */
 @media (max-width: 26.5625rem) {
   .appContent {
-    padding: 0.75rem;
+    padding: 0.55rem;
   }
 
   /* hide username earlier so header stays clean */

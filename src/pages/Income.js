@@ -1,8 +1,10 @@
 import React from "react";
 import "../styles/Income.css";
 import { post } from "../api";
+import Select from "react-select";
 
 const incomeCategories = ["Salary", "Borrowing Money", "Side Income", "Other"];
+const categoryOptions = incomeCategories.map((c) => ({ value: c, label: c }));
 
 export default function Income() {
   const [form, setForm] = React.useState({
@@ -44,12 +46,18 @@ export default function Income() {
           <p className="formSub">Add your income entry</p>
         </div>
 
-        {error && <div style={{ marginBottom: 12, color: "crimson" }}>{error}</div>}
-        {success && <div style={{ marginBottom: 12, color: "green" }}>{success}</div>}
+        {error && (
+          <div style={{ marginBottom: 12, color: "crimson" }}>{error}</div>
+        )}
+        {success && (
+          <div style={{ marginBottom: 12, color: "green" }}>{success}</div>
+        )}
 
         <form className="formGrid" onSubmit={onSubmit}>
           <div className="field">
-            <label className="label" htmlFor="income-date">Date</label>
+            <label className="label" htmlFor="income-date">
+              Date
+            </label>
             <input
               id="income-date"
               className="input"
@@ -62,24 +70,30 @@ export default function Income() {
           </div>
 
           <div className="field">
-            <label className="label" htmlFor="income-category">Category</label>
-            <select
-              id="income-category"
-              className="select"
-              name="category"
-              value={form.category}
-              onChange={onChange}
-              required
-            >
-              <option value="" disabled>Select category</option>
-              {incomeCategories.map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
+            <label className="label" htmlFor="income-category">
+              Category
+            </label>
+              <Select
+                inputId="income-category"
+                classNamePrefix="rs"
+                options={categoryOptions}
+                value={
+                  categoryOptions.find((o) => o.value === form.category) || null
+                }
+                onChange={(opt) =>
+                  setForm((s) => ({ ...s, category: opt?.value || "" }))
+                }
+                placeholder="Select category"
+                menuPlacement="bottom"
+                menuPosition="fixed"
+                maxMenuHeight={220}
+              />
           </div>
 
           <div className="field fieldFull">
-            <label className="label" htmlFor="income-desc">Description</label>
+            <label className="label" htmlFor="income-desc">
+              Description
+            </label>
             <input
               id="income-desc"
               className="input"
@@ -92,7 +106,9 @@ export default function Income() {
           </div>
 
           <div className="field fieldFull">
-            <label className="label" htmlFor="income-amount">Amount</label>
+            <label className="label" htmlFor="income-amount">
+              Amount
+            </label>
             <input
               id="income-amount"
               className="input"
@@ -108,7 +124,9 @@ export default function Income() {
           </div>
 
           <div className="actions">
-            <button className="submitBtn" type="submit">Add Income</button>
+            <button className="submitBtn" type="submit">
+              Add Income
+            </button>
           </div>
         </form>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Dashboard.css";
 import { get } from "../api";
+import Select from "react-select";
 
 import { Bar, Pie } from "react-chartjs-2";
 import {
@@ -13,7 +14,14 @@ import {
   Legend,
 } from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+);
 
 const monthOptions = [
   { value: 1, label: "January" },
@@ -30,15 +38,24 @@ const monthOptions = [
   { value: 12, label: "December" },
 ];
 
-const expenseCategories = [
+const knownExpenseCategories = [
   "Housing",
+  "Groceries",
   "Food",
-  "Transportation",
+  "Outside food",
+  "Fuel",
+  "Public Transport",
   "Bills",
   "Healthcare",
+  "Spend on other",
+  "Learning",
   "Personal Care",
   "Entertainment",
   "Shopping",
+  "Gifts & Donations",
+  "Investments",
+  "Loan / EMI",
+  "Savings",
   "Other",
 ];
 
@@ -52,27 +69,26 @@ function formatINR(n) {
   return num.toLocaleString("en-IN", { maximumFractionDigits: 2 });
 }
 
+function hashHue(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 360;
+  return h;
+}
+
 export default function Dashboard() {
   const { year: curYear, month: curMonth } = nowYearMonth();
 
-  // Recent table
   const [recent, setRecent] = React.useState([]);
 
-  // Histogram filter
   const [histYear, setHistYear] = React.useState(curYear);
   const [expenseByMonth, setExpenseByMonth] = React.useState(Array(12).fill(0));
 
-  // Pie filter
   const [pieYear, setPieYear] = React.useState(curYear);
   const [pieMonth, setPieMonth] = React.useState(curMonth);
-  const [expenseByCategory, setExpenseByCategory] = React.useState(() => {
-    const obj = {};
-    expenseCategories.forEach((c) => (obj[c] = 0));
-    return obj;
-  });
 
-  // Totals
-  const [totals, setTotals] = React.useState({
+  const [expenseByCategory, setExpenseByCategory] = React.useState({});
+
+  const [monthTotals, setMonthTotals] = React.useState({
     totalIncome: 0,
     totalExpense: 0,
     incomeCount: 0,
@@ -90,7 +106,42 @@ export default function Dashboard() {
     return arr;
   }, [curYear]);
 
-  // Fetch recent (once)
+  const yearOptions = React.useMemo(
+    () => years.map((y) => ({ value: y, label: String(y) })),
+    [years],
+  );
+
+  const selectedMonthLabel =
+    monthOptions.find((m) => m.value === pieMonth)?.label || "Month";
+
+  const barOptions = React.useMemo(
+    () => ({
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true },
+      },
+      scales: {
+        y: { ticks: { precision: 0 } },
+      },
+    }),
+    [],
+  );
+
+  const pieOptions = React.useMemo(
+    () => ({
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true },
+      },
+      layout: { padding: 0 },
+    }),
+    [],
+  );
+
   React.useEffect(() => {
     (async () => {
       try {
@@ -103,27 +154,15 @@ export default function Dashboard() {
     })();
   }, []);
 
-  // Fetch histogram + totals when histYear changes
   React.useEffect(() => {
     (async () => {
       try {
         setLoading(true);
         setError("");
-
-        const [histRes, totalsRes] = await Promise.all([
-          get(`/dashboard/expense-by-month?year=${histYear}`),
-          get(`/dashboard/totals?year=${histYear}`),
-        ]);
-
-        setExpenseByMonth(histRes?.data || Array(12).fill(0));
-        setTotals(
-          totalsRes?.data || {
-            totalIncome: 0,
-            totalExpense: 0,
-            incomeCount: 0,
-            expenseCount: 0,
-          }
+        const histRes = await get(
+          `/dashboard/expense-by-month?year=${histYear}`,
         );
+        setExpenseByMonth(histRes?.data || Array(12).fill(0));
       } catch (err) {
         setError(err?.message || "Failed to load dashboard");
         setExpenseByMonth(Array(12).fill(0));
@@ -133,25 +172,50 @@ export default function Dashboard() {
     })();
   }, [histYear]);
 
-  // Fetch pie when pie filters change
   React.useEffect(() => {
     (async () => {
       try {
         setLoading(true);
         setError("");
 
-        const res = await get(`/dashboard/expense-by-category?year=${pieYear}&month=${pieMonth}`);
-        const data = res?.data || {};
+        const [catRes, totalsRes] = await Promise.all([
+          get(
+            `/dashboard/expense-by-category?year=${pieYear}&month=${pieMonth}`,
+          ),
+          get(`/dashboard/totals-by-month?year=${pieYear}&month=${pieMonth}`),
+        ]);
 
-        // ensure all categories exist
+        const data = catRes?.data || {};
+
         const normalized = {};
-        expenseCategories.forEach((c) => (normalized[c] = Number(data[c] || 0)));
+        Object.entries(data).forEach(([key, val]) => {
+          const cleanedKey = String(key || "").trim();
+          normalized[cleanedKey] = Number(val || 0);
+        });
+
+        knownExpenseCategories.forEach((c) => {
+          if (typeof normalized[c] !== "number") normalized[c] = 0;
+        });
+
         setExpenseByCategory(normalized);
+
+        setMonthTotals(
+          totalsRes?.data || {
+            totalIncome: 0,
+            totalExpense: 0,
+            incomeCount: 0,
+            expenseCount: 0,
+          },
+        );
       } catch (err) {
         setError(err?.message || "Failed to load dashboard");
-        const blank = {};
-        expenseCategories.forEach((c) => (blank[c] = 0));
-        setExpenseByCategory(blank);
+        setExpenseByCategory({});
+        setMonthTotals({
+          totalIncome: 0,
+          totalExpense: 0,
+          incomeCount: 0,
+          expenseCount: 0,
+        });
       } finally {
         setLoading(false);
       }
@@ -164,19 +228,50 @@ export default function Dashboard() {
       {
         label: `Expense (${histYear})`,
         data: expenseByMonth.map((x) => Number(x || 0)),
+
+        // ✅ bar colors
+        backgroundColor: "rgba(0, 232, 170, 0.55)", // main fill
+        borderColor: "rgba(0, 232, 170, 0.95)", // outline
+        borderWidth: 1,
+        borderRadius: 8, // rounded bars
+        hoverBackgroundColor: "rgba(0, 232, 170, 0.75)",
       },
     ],
   };
 
+  const allCats = React.useMemo(() => {
+    return Object.keys(expenseByCategory).sort(
+      (a, b) =>
+        Number(expenseByCategory[b] || 0) - Number(expenseByCategory[a] || 0),
+    );
+  }, [expenseByCategory]);
+
+  const pieValues = allCats.map((c) => Number(expenseByCategory[c] || 0));
+  const pieTotal = pieValues.reduce((a, b) => a + b, 0);
+
+  const pieColors = allCats.map((c) => `hsl(${hashHue(c)} 80% 55%)`);
+
   const pieData = {
-    labels: expenseCategories,
+    labels: allCats,
     datasets: [
       {
-        label: `Expense by Category`,
-        data: expenseCategories.map((c) => Number(expenseByCategory[c] || 0)),
+        label: "Expense by Category",
+        data: pieValues,
+        backgroundColor: pieColors,
+        borderWidth: 0,
+        radius: "88%", // ✅ prevents "giant pie"
+        hoverOffset: 6,
       },
     ],
   };
+
+  const categoryRows = React.useMemo(() => {
+    return allCats.map((c) => ({
+      name: c,
+      value: Number(expenseByCategory[c] || 0),
+      hue: hashHue(c),
+    }));
+  }, [allCats, expenseByCategory]);
 
   return (
     <div className="dashPage">
@@ -189,7 +284,7 @@ export default function Dashboard() {
         {error && <div className="dashMsg dashErr">{error}</div>}
         {loading && <div className="dashMsg dashInfo">Loading…</div>}
 
-        {/* Recent 5 */}
+        {/* Recent */}
         <div className="dashSection">
           <div className="dashSectionHead">
             <h3 className="dashH3">Recent (Last 5)</h3>
@@ -210,14 +305,22 @@ export default function Dashboard() {
               <tbody>
                 {recent.length === 0 && !loading ? (
                   <tr>
-                    <td colSpan={6} className="emptyCell">No records found.</td>
+                    <td colSpan={6} className="emptyCell">
+                      No records found.
+                    </td>
                   </tr>
                 ) : (
                   recent.map((r) => (
                     <tr key={r._id}>
                       <td>{r.date}</td>
                       <td>{r.day}</td>
-                      <td className={r.entryType === "expense" ? "typeExpense" : "typeIncome"}>
+                      <td
+                        className={
+                          r.entryType === "expense"
+                            ? "typeExpense"
+                            : "typeIncome"
+                        }
+                      >
                         {r.entryType}
                       </td>
                       <td>{r.category}</td>
@@ -237,87 +340,138 @@ export default function Dashboard() {
             <h3 className="dashH3">Expense per Month</h3>
 
             <div className="dashFilter">
-              <label className="dashLabel" htmlFor="hist-year">Year</label>
-              <select
-                id="hist-year"
-                className="dashSelect"
-                value={histYear}
-                onChange={(e) => setHistYear(Number(e.target.value))}
-              >
-                {years.map((y) => (
-                  <option key={y} value={y}>{y}</option>
-                ))}
-              </select>
+              <label className="dashLabel" htmlFor="hist-year">
+                Year
+              </label>
+              <Select
+                inputId="hist-year"
+                classNamePrefix="rs"
+                options={yearOptions}
+                value={yearOptions.find((o) => o.value === histYear) || null}
+                onChange={(opt) => setHistYear(opt?.value ?? curYear)}
+                placeholder="Select year"
+                menuPlacement="bottom"
+                menuPosition="fixed"
+                maxMenuHeight={220}
+              />
             </div>
           </div>
 
-          <div className="dashChartCard">
-            <Bar data={barData} />
+          <div className="dashChartCard dashChartTall">
+            <Bar data={barData} options={barOptions} />
           </div>
         </div>
 
-        {/* Pie */}
+        {/* Breakdown */}
         <div className="dashSection">
           <div className="dashSectionHead dashRow">
             <h3 className="dashH3">Category Breakdown</h3>
 
             <div className="dashFilters2">
               <div className="dashFilter">
-                <label className="dashLabel" htmlFor="pie-year">Year</label>
-                <select
-                  id="pie-year"
-                  className="dashSelect"
-                  value={pieYear}
-                  onChange={(e) => setPieYear(Number(e.target.value))}
-                >
-                  {years.map((y) => (
-                    <option key={y} value={y}>{y}</option>
-                  ))}
-                </select>
+                <label className="dashLabel" htmlFor="pie-year">
+                  Year
+                </label>
+                <Select
+                  inputId="pie-year"
+                  classNamePrefix="rs"
+                  options={yearOptions}
+                  value={yearOptions.find((o) => o.value === pieYear) || null}
+                  onChange={(opt) => setPieYear(opt?.value ?? curYear)}
+                  placeholder="Select year"
+                  menuPlacement="bottom"
+                  menuPosition="fixed"
+                  maxMenuHeight={220}
+                />
               </div>
 
               <div className="dashFilter">
-                <label className="dashLabel" htmlFor="pie-month">Month</label>
-                <select
-                  id="pie-month"
-                  className="dashSelect"
-                  value={pieMonth}
-                  onChange={(e) => setPieMonth(Number(e.target.value))}
-                >
-                  {monthOptions.map((m) => (
-                    <option key={m.value} value={m.value}>{m.label}</option>
-                  ))}
-                </select>
+                <label className="dashLabel" htmlFor="pie-month">
+                  Month
+                </label>
+                <Select
+                  inputId="pie-month"
+                  classNamePrefix="rs"
+                  options={monthOptions}
+                  value={monthOptions.find((o) => o.value === pieMonth) || null}
+                  onChange={(opt) => setPieMonth(opt?.value ?? curMonth)}
+                  placeholder="Select month"
+                  menuPlacement="bottom"
+                  menuPosition="fixed"
+                  maxMenuHeight={220}
+                />
               </div>
             </div>
           </div>
 
-          <div className="dashChartCard">
-            <Pie data={pieData} />
+          <div className="dashBreakdown">
+            {/* LEFT: pie */}
+            <div className="dashPieCard">
+              <div className="dashMiniTitle">
+                {selectedMonthLabel} {pieYear}
+              </div>
+              <div className="dashPieWrap">
+                <Pie data={pieData} options={pieOptions} />
+              </div>
+            </div>
+
+            {/* RIGHT: categories (scroll) */}
+            <div className="dashCatsCard">
+              <div className="dashMiniTitle">Categories</div>
+
+              <div className="dashCatsList">
+                {categoryRows.map((r) => {
+                  const pct = pieTotal > 0 ? (r.value / pieTotal) * 100 : 0;
+                  return (
+                    <div className="catRow" key={r.name}>
+                      <div className="catLeft">
+                        <span
+                          className="catDot"
+                          style={{ background: `hsl(${r.hue} 80% 55%)` }}
+                        />
+                        <span className="catName">{r.name}</span>
+                      </div>
+
+                      <div className="catRight">
+                        <span className="catPct">
+                          {pct ? `${pct.toFixed(0)}%` : "0%"}
+                        </span>
+                        <span className="catAmt">{formatINR(r.value)}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Totals */}
+        {/* Monthly totals */}
         <div className="dashSection">
           <div className="dashSectionHead">
-            <h3 className="dashH3">Totals ({histYear})</h3>
+            <h3 className="dashH3">
+              Monthly Totals — {selectedMonthLabel} {pieYear}
+            </h3>
           </div>
 
           <div className="dashTotals">
             <div className="totalBox">
-              <div className="totalLabel">Total Expense</div>
-              <div className="totalValue">{formatINR(totals.totalExpense)}</div>
-              <div className="totalMeta">Count: {totals.expenseCount}</div>
+              <div className="totalLabel">Total Expense (Month)</div>
+              <div className="totalValue">
+                {formatINR(monthTotals.totalExpense)}
+              </div>
+              <div className="totalMeta">Count: {monthTotals.expenseCount}</div>
             </div>
 
             <div className="totalBox">
-              <div className="totalLabel">Total Income</div>
-              <div className="totalValue">{formatINR(totals.totalIncome)}</div>
-              <div className="totalMeta">Count: {totals.incomeCount}</div>
+              <div className="totalLabel">Total Income (Month)</div>
+              <div className="totalValue">
+                {formatINR(monthTotals.totalIncome)}
+              </div>
+              <div className="totalMeta">Count: {monthTotals.incomeCount}</div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

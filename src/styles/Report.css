@@ -1,3 +1,5 @@
+/* src/styles/Report.css */
+
 :root {
   --rep-bg: #c4dcec;
   --rep-border: rgba(15, 23, 42, 0.1);
@@ -11,27 +13,27 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.75rem; /* ✅ match Dashboard */
 }
 
 .reportCard {
   width: 100%;
-  max-width: 58rem;
+  max-width: 66rem; /* ✅ match Dashboard width */
   background: var(--rep-bg);
   border: 0.0625rem solid var(--rep-border);
   border-radius: 0.9rem;
   box-shadow: var(--rep-shadow);
-  padding: 1.25rem;
+  padding: 1rem; /* ✅ match Dashboard */
 }
 
 .reportHeader {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem; /* ✅ match Dashboard */
 }
 
 .reportTitle {
   margin: 0;
   font-size: 1.35rem;
-  font-weight: 900;
+  font-weight: 500; /* ✅ match your settled Dashboard */
   letter-spacing: -0.02em;
 }
 
@@ -42,55 +44,40 @@
 }
 
 .reportMsg {
-  margin-bottom: 0.85rem;
-  padding: 0.75rem 0.85rem;
+  margin-bottom: 0.75rem;
+  padding: 0.65rem 0.8rem;
   border-radius: 0.7rem;
   border: 0.0625rem solid var(--rep-border);
   background: rgba(255, 255, 255, 0.55);
-  font-weight: 700;
+  font-weight: 500; /* ✅ match Dashboard */
 }
-
 .reportErr {
   color: crimson;
 }
-
 .reportInfo {
   color: rgba(15, 23, 42, 0.85);
 }
 
+/* Filters row */
 .reportFilters {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr auto;
   gap: 0.85rem;
   align-items: end;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 
 .reportField {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
+  min-width: 10rem; /* ✅ similar feel to dashFilter */
 }
 
 .reportLabel {
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 500; /* ✅ match Dashboard */
   color: rgba(15, 23, 42, 0.85);
-}
-
-.reportSelect {
-  height: 2.75rem;
-  padding: 0 0.85rem;
-  border-radius: 0.65rem;
-  border: 0.0625rem solid var(--rep-border);
-  outline: none;
-  font-size: 1rem;
-  background: #fff;
-}
-
-.reportSelect:focus {
-  border-color: rgba(0, 232, 170, 0.65);
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
 }
 
 .reportActions {
@@ -99,12 +86,12 @@
 }
 
 .reportSubmit {
-  height: 2.75rem;
+  height: 2.55rem; /* ✅ match Dashboard select height */
   padding: 0 1.2rem;
   border-radius: 0.7rem;
   border: none;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 500; /* ✅ match Dashboard */
   font-size: 1rem;
   background: var(--rep-accent);
   color: #ffffff;
@@ -114,6 +101,7 @@
   filter: brightness(0.98);
 }
 
+/* Table */
 .reportTableWrap {
   width: 100%;
   overflow: auto;
@@ -125,20 +113,20 @@
 .reportTable {
   width: 100%;
   border-collapse: collapse;
-  min-width: 42rem;
+  min-width: 52rem; /* ✅ match Dashboard table sizing */
 }
 
 .reportTable thead th {
   text-align: left;
-  padding: 0.85rem 0.9rem;
+  padding: 0.8rem 0.85rem;
   font-size: 0.95rem;
-  font-weight: 900;
+  font-weight: 500; /* ✅ match Dashboard */
   border-bottom: 0.0625rem solid var(--rep-border);
 }
 
 .reportTable tbody td,
 .reportTable tfoot td {
-  padding: 0.8rem 0.9rem;
+  padding: 0.75rem 0.85rem;
   border-bottom: 0.0625rem solid rgba(15, 23, 42, 0.08);
   font-size: 0.95rem;
 }
@@ -147,13 +135,13 @@
   background: rgba(255, 255, 255, 0.7);
 }
 
-.reportTable .amt {
+.amt {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-.reportTable .desc {
-  max-width: 26rem;
+.desc {
+  max-width: 22rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,21 +150,22 @@
 .emptyCell {
   text-align: center;
   color: var(--rep-muted);
-  font-weight: 800;
-  padding: 1.2rem 0.9rem;
+  font-weight: 500;
+  padding: 1.05rem 0.9rem;
 }
 
 .tfootLabel {
   text-align: right;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .tfootAmt {
-  font-weight: 900;
+  font-weight: 500;
 }
 
+/* Bottom pager + download */
 .reportBottom {
-  margin-top: 1rem;
+  margin-top: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -198,7 +187,7 @@
 }
 
 .pageSizeLabel {
-  font-weight: 900;
+  font-weight: 500;
   color: rgba(15, 23, 42, 0.85);
 }
 
@@ -208,12 +197,12 @@
   border-radius: 0.65rem;
   border: 0.0625rem solid var(--rep-border);
   background: #fff;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .pageInfo {
   color: rgba(15, 23, 42, 0.85);
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .pageBtns {
@@ -240,12 +229,12 @@
 }
 
 .downloadBtn {
-  height: 2.75rem;
+  height: 2.55rem; /* ✅ match Dashboard sizing */
   padding: 0 1.2rem;
   border-radius: 0.7rem;
   border: none;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 500; /* ✅ match Dashboard */
   font-size: 1rem;
   background: var(--rep-accent);
   color: #ffffff;
@@ -255,18 +244,44 @@
   filter: brightness(0.98);
 }
 
-/* -----------------------------
-   Breakpoints
--------------------------------- */
+/* ✅ react-select styling (same approach as Dashboard + Income) */
+.rs__control {
+  min-height: 2.55rem !important;
+  border-radius: 0.65rem !important;
+  border: 0.0625rem solid var(--rep-border) !important;
+  box-shadow: none !important;
+}
+
+.rs__control--is-focused {
+  border-color: rgba(0, 232, 170, 0.65) !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12) !important;
+}
+
+.rs__value-container {
+  padding: 0 0.85rem !important;
+}
+
+.rs__menu {
+  border-radius: 0.65rem !important;
+  overflow: hidden;
+}
+
+.rs__menu-list {
+  max-height: 220px !important;
+}
+
+/* ---------------- Breakpoints (same spirit as Dashboard) ---------------- */
 
 /* <= 1024 */
 @media (max-width: 64rem) {
   .reportCard {
-    max-width: 52rem;
+    max-width: 54rem;
   }
+
   .reportFilters {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
   .reportActions {
     grid-column: 1 / -1;
     justify-content: flex-end;
@@ -277,7 +292,7 @@
 @media (max-width: 48rem) {
   .reportCard {
     max-width: 44rem;
-    padding: 1.1rem;
+    padding: 0.95rem;
   }
 
   .reportFilters {
@@ -289,36 +304,30 @@
   }
 
   .reportTable {
-    min-width: 36rem;
+    min-width: 46rem; /* similar to Dashboard */
   }
 }
 
 /* <= 425 */
 @media (max-width: 26.5625rem) {
   .reportPage {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
 
   .reportTitle {
     font-size: 1.2rem;
   }
 
-  .reportSelect,
-  .reportSubmit,
-  .downloadBtn {
-    height: 2.6rem;
-  }
-
   .reportTable {
-    min-width: 34rem;
+    min-width: 44rem;
   }
 }
 
 /* >= 1440 */
 @media (min-width: 90rem) {
   .reportCard {
-    max-width: 64rem;
-    padding: 1.5rem;
+    max-width: 68rem;
+    padding: 1.25rem;
   }
 
   .reportTitle {
@@ -329,17 +338,16 @@
 /* >= 2560 */
 @media (min-width: 160rem) {
   .reportCard {
-    max-width: 78rem;
-    padding: 1.75rem;
+    max-width: 82rem;
+    padding: 1.5rem;
   }
 
   .reportTitle {
     font-size: 1.7rem;
   }
 
-  .reportSelect,
-  .reportSubmit,
-  .downloadBtn {
+  .downloadBtn,
+  .reportSubmit {
     height: 3rem;
     font-size: 1.05rem;
   }
