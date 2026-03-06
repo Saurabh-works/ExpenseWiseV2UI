@@ -40,10 +40,10 @@ export default function Welcome() {
           </p>
 
           <div className="heroActions">
-            <button className="btn btnPrimary" onClick={() => nav("/signup")}>
+            <button className="btn btnPrimary heroBtn" onClick={() => nav("/signup")}>
               Create Account
             </button>
-            <button className="btn btnSecondary" onClick={() => nav("/login")}>
+            <button className="btn btnSecondary heroBtn" onClick={() => nav("/login")}>
               Login
             </button>
           </div>
@@ -149,7 +149,7 @@ export default function Welcome() {
 
         <div className="footerRight">
           <a
-            href="https://www.linkedin.com/in/saurabh-workplace/"
+            href="https://linkedin.com"
             target="_blank"
             rel="noreferrer"
             className="socialLink"
@@ -169,7 +169,7 @@ export default function Welcome() {
           </a>
 
           <a
-            href="mailto:saurabhshindework@gmail.com"
+            href="mailto:yourmail@example.com"
             className="socialLink"
             aria-label="Email"
           >
