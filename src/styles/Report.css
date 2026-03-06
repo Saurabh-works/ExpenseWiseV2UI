@@ -1,11 +1,11 @@
 /* src/styles/Report.css */
 
 :root {
-  --rep-bg: #c4dcec;
-  --rep-border: rgba(15, 23, 42, 0.1);
-  --rep-muted: rgba(15, 23, 42, 0.6);
-  --rep-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
-  --rep-accent: var(--ts-accent, #00e8aa);
+  --rep-bg: #ffffff;
+  --rep-border: #e5e5e5;
+  --rep-muted: #988686;
+  --rep-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+  --rep-accent: var(--ts-accent, #5caea6);
 }
 
 .reportPage {
@@ -13,28 +13,30 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 0.75rem; /* ✅ match Dashboard */
+  padding: 0.75rem;
+  background: #f6f6f6;
 }
 
 .reportCard {
   width: 100%;
-  max-width: 66rem; /* ✅ match Dashboard width */
+  max-width: 66rem;
   background: var(--rep-bg);
   border: 0.0625rem solid var(--rep-border);
   border-radius: 0.9rem;
   box-shadow: var(--rep-shadow);
-  padding: 1rem; /* ✅ match Dashboard */
+  padding: 1rem;
 }
 
 .reportHeader {
-  margin-bottom: 0.75rem; /* ✅ match Dashboard */
+  margin-bottom: 0.75rem;
 }
 
 .reportTitle {
   margin: 0;
   font-size: 1.35rem;
-  font-weight: 500; /* ✅ match your settled Dashboard */
+  font-weight: 600;
   letter-spacing: -0.02em;
+  color: #000000;
 }
 
 .reportSub {
@@ -48,14 +50,18 @@
   padding: 0.65rem 0.8rem;
   border-radius: 0.7rem;
   border: 0.0625rem solid var(--rep-border);
-  background: rgba(255, 255, 255, 0.55);
-  font-weight: 500; /* ✅ match Dashboard */
+  background: #f8f8f8;
+  font-weight: 500;
 }
+
 .reportErr {
-  color: crimson;
+  color: #a94442;
+  background: rgba(229, 115, 115, 0.12);
+  border-color: rgba(229, 115, 115, 0.3);
 }
+
 .reportInfo {
-  color: rgba(15, 23, 42, 0.85);
+  color: #000000;
 }
 
 /* Filters row */
@@ -71,13 +77,13 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  min-width: 10rem; /* ✅ similar feel to dashFilter */
+  min-width: 10rem;
 }
 
 .reportLabel {
   font-size: 0.9rem;
-  font-weight: 500; /* ✅ match Dashboard */
-  color: rgba(15, 23, 42, 0.85);
+  font-weight: 500;
+  color: #000000;
 }
 
 .reportActions {
@@ -86,19 +92,20 @@
 }
 
 .reportSubmit {
-  height: 2.55rem; /* ✅ match Dashboard select height */
+  height: 2.55rem;
   padding: 0 1.2rem;
   border-radius: 0.7rem;
   border: none;
   cursor: pointer;
-  font-weight: 500; /* ✅ match Dashboard */
+  font-weight: 600;
   font-size: 1rem;
   background: var(--rep-accent);
   color: #ffffff;
+  transition: background 0.2s ease;
 }
 
 .reportSubmit:hover {
-  filter: brightness(0.98);
+  background: #3f8f88;
 }
 
 /* Table */
@@ -107,32 +114,35 @@
   overflow: auto;
   border-radius: 0.85rem;
   border: 0.0625rem solid var(--rep-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
 }
 
 .reportTable {
   width: 100%;
   border-collapse: collapse;
-  min-width: 52rem; /* ✅ match Dashboard table sizing */
+  min-width: 52rem;
 }
 
 .reportTable thead th {
   text-align: left;
   padding: 0.8rem 0.85rem;
   font-size: 0.95rem;
-  font-weight: 500; /* ✅ match Dashboard */
+  font-weight: 600;
   border-bottom: 0.0625rem solid var(--rep-border);
+  background: #f1f1f1;
+  color: #000000;
 }
 
 .reportTable tbody td,
 .reportTable tfoot td {
   padding: 0.75rem 0.85rem;
-  border-bottom: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  border-bottom: 0.0625rem solid #eeeeee;
   font-size: 0.95rem;
+  color: #000000;
 }
 
 .reportTable tbody tr:hover td {
-  background: rgba(255, 255, 255, 0.7);
+  background: #f9f9f9;
 }
 
 .amt {
@@ -156,11 +166,15 @@
 
 .tfootLabel {
   text-align: right;
-  font-weight: 500;
+  font-weight: 600;
+  color: #000000;
+  background: #f7f7f7;
 }
 
 .tfootAmt {
-  font-weight: 500;
+  font-weight: 700;
+  color: #000000;
+  background: #f7f7f7;
 }
 
 /* Bottom pager + download */
@@ -188,7 +202,7 @@
 
 .pageSizeLabel {
   font-weight: 500;
-  color: rgba(15, 23, 42, 0.85);
+  color: #000000;
 }
 
 .pageSizeSelect {
@@ -196,12 +210,19 @@
   padding: 0 0.75rem;
   border-radius: 0.65rem;
   border: 0.0625rem solid var(--rep-border);
-  background: #fff;
+  background: #ffffff;
+  color: #000000;
   font-weight: 500;
+  outline: none;
+}
+
+.pageSizeSelect:focus {
+  border-color: #5caea6;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12);
 }
 
 .pageInfo {
-  color: rgba(15, 23, 42, 0.85);
+  color: #000000;
   font-weight: 500;
 }
 
@@ -216,11 +237,18 @@
   width: 2.6rem;
   border-radius: 0.65rem;
   border: 0.0625rem solid var(--rep-border);
-  background: rgba(255, 255, 255, 0.7);
+  background: #ffffff;
+  color: #000000;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.iconBtn:hover:not(:disabled) {
+  background: rgba(92, 174, 166, 0.08);
+  border-color: rgba(92, 174, 166, 0.35);
 }
 
 .iconBtn:disabled {
@@ -229,32 +257,42 @@
 }
 
 .downloadBtn {
-  height: 2.55rem; /* ✅ match Dashboard sizing */
+  height: 2.55rem;
   padding: 0 1.2rem;
   border-radius: 0.7rem;
   border: none;
   cursor: pointer;
-  font-weight: 500; /* ✅ match Dashboard */
+  font-weight: 600;
   font-size: 1rem;
   background: var(--rep-accent);
   color: #ffffff;
+  transition: background 0.2s ease;
 }
 
 .downloadBtn:hover {
-  filter: brightness(0.98);
+  background: #3f8f88;
 }
 
-/* ✅ react-select styling (same approach as Dashboard + Income) */
+/* react-select */
 .rs__control {
   min-height: 2.55rem !important;
   border-radius: 0.65rem !important;
   border: 0.0625rem solid var(--rep-border) !important;
+  background: #ffffff !important;
   box-shadow: none !important;
 }
 
 .rs__control--is-focused {
-  border-color: rgba(0, 232, 170, 0.65) !important;
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12) !important;
+  border-color: #5caea6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__single-value {
+  color: #000000 !important;
+}
+
+.rs__placeholder {
+  color: #988686 !important;
 }
 
 .rs__value-container {
@@ -264,13 +302,28 @@
 .rs__menu {
   border-radius: 0.65rem !important;
   overflow: hidden;
+  border: 1px solid #e5e5e5;
 }
 
 .rs__menu-list {
   max-height: 220px !important;
 }
 
-/* ---------------- Breakpoints (same spirit as Dashboard) ---------------- */
+.rs__option {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.rs__option--is-focused {
+  background: rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__option--is-selected {
+  background: #5caea6 !important;
+  color: #ffffff !important;
+}
+
+/* Breakpoints */
 
 /* <= 1024 */
 @media (max-width: 64rem) {
@@ -304,7 +357,7 @@
   }
 
   .reportTable {
-    min-width: 46rem; /* similar to Dashboard */
+    min-width: 46rem;
   }
 }
 

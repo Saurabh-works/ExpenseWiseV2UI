@@ -1,11 +1,11 @@
 /* src/styles/Income.css */
 
 :root {
-  --in-bg: #c4dcec;
-  --in-border: rgba(15, 23, 42, 0.1);
-  --in-muted: rgba(15, 23, 42, 0.6);
-  --in-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
-  --in-accent: var(--ts-accent, #00e8aa);
+  --in-bg: #ffffff;
+  --in-border: #e5e5e5;
+  --in-muted: #988686;
+  --in-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+  --in-accent: var(--ts-accent, #5caea6);
 
   --in-radius: 0.9rem;
   --in-gap: 0.85rem;
@@ -20,6 +20,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 0.75rem;
+  background: #f6f6f6;
 }
 
 /* Main card */
@@ -51,6 +52,7 @@
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+  color: #000000;
 }
 
 .inSub {
@@ -59,7 +61,7 @@
   font-size: 0.95rem;
 }
 
-/* ✅ Top-center toast */
+/* Top-center toast */
 .inToastWrap {
   position: absolute;
   top: 0.75rem;
@@ -75,8 +77,8 @@
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
   border: 0.0625rem solid var(--in-border);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.12);
   font-weight: 700;
   text-align: center;
 
@@ -85,11 +87,15 @@
 }
 
 .inToast.isOk {
-  color: rgba(16, 185, 129, 0.95);
+  color: #66bb6a;
+  border-color: rgba(102, 187, 106, 0.28);
+  background: rgba(102, 187, 106, 0.08);
 }
 
 .inToast.isErr {
-  color: crimson;
+  color: #a94442;
+  border-color: rgba(229, 115, 115, 0.3);
+  background: rgba(229, 115, 115, 0.12);
 }
 
 @keyframes inToastIn {
@@ -119,7 +125,7 @@
 .inQuickCard {
   border-radius: 0.85rem;
   border: 0.0625rem solid var(--in-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
   padding: 0.95rem;
 
   height: 100%;
@@ -149,10 +155,12 @@
 .inFormGrid::-webkit-scrollbar {
   width: 0.5rem;
 }
+
 .inFormGrid::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.16);
+  background: #d1d0d0;
   border-radius: 999rem;
 }
+
 .inFormGrid::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -170,7 +178,7 @@
 .inLabel {
   font-size: 0.92rem;
   font-weight: 600;
-  color: rgba(15, 23, 42, 0.85);
+  color: #000000;
 }
 
 .inInput {
@@ -180,12 +188,17 @@
   border: 0.0625rem solid var(--in-border);
   outline: none;
   font-size: 1rem;
-  background: #fff;
+  background: #ffffff;
+  color: #000000;
+}
+
+.inInput::placeholder {
+  color: #988686;
 }
 
 .inInput:focus {
-  border-color: rgba(0, 232, 170, 0.65);
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
+  border-color: #5caea6;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12);
 }
 
 .inActions {
@@ -210,9 +223,11 @@
   font-size: 1rem;
   background: var(--in-accent);
   color: #ffffff;
+  transition: background 0.2s ease;
 }
+
 .inSubmit:hover {
-  filter: brightness(0.98);
+  background: #3f8f88;
 }
 
 /* RIGHT */
@@ -230,7 +245,7 @@
 
 .inQuickTitle {
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.9);
+  color: #000000;
   margin-bottom: 0.25rem;
 }
 
@@ -252,10 +267,12 @@
 .inQuickScroll::-webkit-scrollbar {
   width: 0.5rem;
 }
+
 .inQuickScroll::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.18);
+  background: #d1d0d0;
   border-radius: 999rem;
 }
+
 .inQuickScroll::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -273,19 +290,21 @@
   gap: 0.6rem;
   padding: 0.65rem 0.7rem;
   border-radius: 0.75rem;
-  border: 0.0625rem solid rgba(15, 23, 42, 0.08);
-  background: rgba(255, 255, 255, 0.55);
+  border: 0.0625rem solid #eeeeee;
+  background: #fafafa;
   cursor: pointer;
   text-align: left;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .inQuickBtn:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: #f3f3f3;
 }
 
 .inQuickBtn.isActive {
-  border-color: rgba(0, 232, 170, 0.5);
-  box-shadow: 0 0 0 0.18rem rgba(0, 232, 170, 0.12);
+  border-color: rgba(92, 174, 166, 0.45);
+  box-shadow: 0 0 0 0.18rem rgba(92, 174, 166, 0.12);
+  background: rgba(92, 174, 166, 0.08);
 }
 
 .inQuickEmoji {
@@ -295,14 +314,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 232, 170, 0.14);
+  background: rgba(92, 174, 166, 0.14);
   flex: 0 0 auto;
   font-size: 1.1rem;
 }
 
 .inQuickLabel {
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.9);
+  color: #000000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -312,7 +331,7 @@
   flex: 0 0 auto;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
-  border-top: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  border-top: 0.0625rem solid #eeeeee;
   color: var(--in-muted);
   font-weight: 600;
   font-size: 0.92rem;
@@ -323,12 +342,21 @@
   min-height: 2.75rem !important;
   border-radius: 0.65rem !important;
   border: 0.0625rem solid var(--in-border) !important;
+  background: #ffffff !important;
   box-shadow: none !important;
 }
 
 .rs__control--is-focused {
-  border-color: rgba(0, 232, 170, 0.65) !important;
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12) !important;
+  border-color: #5caea6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__single-value {
+  color: #000000 !important;
+}
+
+.rs__placeholder {
+  color: #988686 !important;
 }
 
 .rs__value-container {
@@ -338,13 +366,28 @@
 .rs__menu {
   border-radius: 0.65rem !important;
   overflow: hidden;
+  border: 1px solid #e5e5e5;
 }
 
 .rs__menu-list {
   max-height: 13.75rem !important;
 }
 
-/* ---------------- Breakpoints ---------------- */
+.rs__option {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.rs__option--is-focused {
+  background: rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__option--is-selected {
+  background: #5caea6 !important;
+  color: #ffffff !important;
+}
+
+/* Breakpoints */
 @media (min-width: 160rem) {
   :root {
     --in-pad: 1.5rem;

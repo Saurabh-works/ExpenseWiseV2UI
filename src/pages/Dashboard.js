@@ -60,24 +60,24 @@ const knownExpenseCategories = [
 ];
 
 const categoryColorMap = {
-  Housing: "#FF6B6B",
-  Groceries: "#4D96FF",
-  Food: "#FFD93D",
-  "Outside food": "#FF922B",
-  Fuel: "#845EF7",
-  "Public Transport": "#20C997",
-  Bills: "#74C0FC",
-  Healthcare: "#FF8787",
-  "Spend on other": "#ADB5BD",
-  Learning: "#94D82D",
-  "Personal Care": "#F783AC",
-  Entertainment: "#9775FA",
-  Shopping: "#5C7CFA",
-  "Gifts & Donations": "#63E6BE",
-  Investments: "#51CF66",
-  "Loan / EMI": "#FF8FA3",
-  Savings: "#22B8CF",
-  Other: "#868E96",
+  Housing: "#E57373",
+  Groceries: "#7EA8BE",
+  Food: "#FFB74D",
+  "Outside food": "#D9985F",
+  Fuel: "#8C7AE6",
+  "Public Transport": "#5CAEA6",
+  Bills: "#7986CB",
+  Healthcare: "#EF9A9A",
+  "Spend on other": "#B0A4A4",
+  Learning: "#A3BE5F",
+  "Personal Care": "#C38D9E",
+  Entertainment: "#9C89B8",
+  Shopping: "#6C8EBF",
+  "Gifts & Donations": "#7FB8A4",
+  Investments: "#66BB6A",
+  "Loan / EMI": "#D48787",
+  Savings: "#5CAEA6",
+  Other: "#988686",
 };
 
 function nowYearMonth() {
@@ -251,11 +251,11 @@ export default function Dashboard() {
         data: expenseByMonth.map((x) => Number(x || 0)),
 
         // ✅ bar colors
-        backgroundColor: "rgba(0, 232, 170, 0.55)", // main fill
-        borderColor: "rgba(0, 232, 170, 0.95)", // outline
+        backgroundColor: "rgba(92, 174, 166, 0.55)",
+        borderColor: "rgba(92, 174, 166, 0.95)",
         borderWidth: 1,
         borderRadius: 8, // rounded bars
-        hoverBackgroundColor: "rgba(0, 232, 170, 0.75)",
+        hoverBackgroundColor: "rgba(92, 174, 166, 0.75)",
       },
     ],
   };
@@ -287,7 +287,6 @@ export default function Dashboard() {
       },
     ],
   };
-
 
   const categoryRows = React.useMemo(() => {
     return allCats.map((c) => ({

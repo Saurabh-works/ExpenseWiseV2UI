@@ -1,15 +1,15 @@
 :root {
-  --ex-bg: #c4dcec;
-  --ex-border: rgba(15, 23, 42, 0.1);
-  --ex-muted: rgba(15, 23, 42, 0.6);
-  --ex-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
-  --ex-accent: var(--ts-accent, #00e8aa);
+  --ex-bg: #ffffff;
+  --ex-border: #e5e5e5;
+  --ex-muted: #988686;
+  --ex-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+  --ex-accent: var(--ts-accent, #5caea6);
 
   /* sizing */
   --ex-radius: 0.9rem;
   --ex-gap: 0.85rem;
   --ex-pad: 1rem;
-  --ex-card-h: 85vh; /* ✅ fixed component height */
+  --ex-card-h: 85vh;
 }
 
 /* Page wrapper */
@@ -19,6 +19,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 0.75rem;
+  background: #f6f6f6;
 }
 
 /* Main card */
@@ -35,12 +36,10 @@
 
   display: flex;
   flex-direction: column;
-
-  /* ✅ critical: keeps inner overflow contained */
   overflow: hidden;
 }
 
-/* ✅ Top-center toast (success/error) */
+/* Top-center toast */
 .exToastWrap {
   position: absolute;
   top: 0.75rem;
@@ -48,7 +47,7 @@
   transform: translateX(-50%);
   z-index: 50;
   width: min(15rem, calc(100% - 2rem));
-  pointer-events: none; /* ✅ doesn't block clicks */
+  pointer-events: none;
 }
 
 .exToast {
@@ -56,22 +55,24 @@
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
   border: 0.0625rem solid var(--ex-border);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.12);
   font-weight: 700;
   text-align: center;
-
-  /* ✅ animation */
   animation: exToastIn 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   will-change: transform, opacity;
 }
 
 .exToast.isOk {
-  color: rgba(16, 185, 129, 0.95);
+  color: #66bb6a;
+  border-color: rgba(102, 187, 106, 0.28);
+  background: rgba(102, 187, 106, 0.08);
 }
 
 .exToast.isErr {
-  color: crimson;
+  color: #a94442;
+  border-color: rgba(229, 115, 115, 0.3);
+  background: rgba(229, 115, 115, 0.12);
 }
 
 @keyframes exToastIn {
@@ -96,6 +97,7 @@
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+  color: #000000;
 }
 
 .exSub {
@@ -110,27 +112,27 @@
   padding: 0.65rem 0.8rem;
   border-radius: 0.7rem;
   border: 0.0625rem solid var(--ex-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #f8f8f8;
   font-weight: 600;
   flex: 0 0 auto;
 }
+
 .exErr {
-  color: crimson;
-}
-.exOk {
-  color: rgba(16, 185, 129, 0.95);
+  color: #a94442;
 }
 
-/* Layout: form + quick categories */
+.exOk {
+  color: #66bb6a;
+}
+
+/* Layout */
 .exLayout {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: var(--ex-gap);
   align-items: stretch;
-
-  /* ✅ fill remaining card height */
   flex: 1 1 auto;
-  min-height: 0; /* ✅ required for internal scrolling children */
+  min-height: 0;
 }
 
 /* Cards inside */
@@ -138,19 +140,18 @@
 .exQuickCard {
   border-radius: 0.85rem;
   border: 0.0625rem solid var(--ex-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
   padding: 0.95rem;
-
   height: 100%;
-  min-height: 0; /* ✅ required for grid children to shrink */
+  min-height: 0;
 }
 
-/* LEFT: form card */
+/* Form card */
 .exFormCard {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  overflow: hidden; /* keep things neat */
+  overflow: hidden;
 }
 
 /* Form grid */
@@ -158,22 +159,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.9rem;
-
-  /* ✅ if content ever exceeds, allow form card to scroll (safe) */
   overflow: auto;
   min-height: 0;
   padding-right: 0.25rem;
-
   scrollbar-width: thin;
 }
 
 .exFormGrid::-webkit-scrollbar {
   width: 0.5rem;
 }
+
 .exFormGrid::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.16);
+  background: #d1d0d0;
   border-radius: 999rem;
 }
+
 .exFormGrid::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -191,7 +191,7 @@
 .exLabel {
   font-size: 0.92rem;
   font-weight: 600;
-  color: rgba(15, 23, 42, 0.85);
+  color: #000000;
 }
 
 .exInput {
@@ -201,12 +201,17 @@
   border: 0.0625rem solid var(--ex-border);
   outline: none;
   font-size: 1rem;
-  background: #fff;
+  background: #ffffff;
+  color: #000000;
+}
+
+.exInput::placeholder {
+  color: #988686;
 }
 
 .exInput:focus {
-  border-color: rgba(0, 232, 170, 0.65);
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
+  border-color: #5caea6;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12);
 }
 
 .exActions {
@@ -214,8 +219,6 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 0.25rem;
-
-  /* ✅ keep button visible even if form scrolls */
   position: sticky;
   bottom: 0;
   padding-top: 0.5rem;
@@ -232,17 +235,19 @@
   font-size: 1rem;
   background: var(--ex-accent);
   color: #ffffff;
-}
-.exSubmit:hover {
-  filter: brightness(0.98);
+  transition: background 0.2s ease;
 }
 
-/* RIGHT: quick categories */
+.exSubmit:hover {
+  background: #3f8f88;
+}
+
+/* Quick categories */
 .exQuickCard {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  overflow: hidden; /* ✅ ensures only inner list scrolls */
+  overflow: hidden;
 }
 
 .exQuickHead {
@@ -252,7 +257,7 @@
 
 .exQuickTitle {
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.9);
+  color: #000000;
   margin-bottom: 0.25rem;
 }
 
@@ -262,28 +267,29 @@
   font-size: 0.92rem;
 }
 
-/* ✅ the scrolling area */
+/* Scroll area */
 .exQuickScroll {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
   padding-right: 0.25rem;
-
   scrollbar-width: thin;
 }
 
 .exQuickScroll::-webkit-scrollbar {
   width: 0.5rem;
 }
+
 .exQuickScroll::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.18);
+  background: #d1d0d0;
   border-radius: 999rem;
 }
+
 .exQuickScroll::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* list */
+/* List */
 .exQuickGrid {
   display: grid;
   grid-template-columns: 1fr;
@@ -297,19 +303,21 @@
   gap: 0.6rem;
   padding: 0.65rem 0.7rem;
   border-radius: 0.75rem;
-  border: 0.0625rem solid rgba(15, 23, 42, 0.08);
-  background: rgba(255, 255, 255, 0.55);
+  border: 0.0625rem solid #eeeeee;
+  background: #fafafa;
   cursor: pointer;
   text-align: left;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .exQuickBtn:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: #f3f3f3;
 }
 
 .exQuickBtn.isActive {
-  border-color: rgba(0, 232, 170, 0.5);
-  box-shadow: 0 0 0 0.18rem rgba(0, 232, 170, 0.12);
+  border-color: rgba(92, 174, 166, 0.45);
+  box-shadow: 0 0 0 0.18rem rgba(92, 174, 166, 0.12);
+  background: rgba(92, 174, 166, 0.08);
 }
 
 .exQuickEmoji {
@@ -319,25 +327,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 232, 170, 0.14);
+  background: rgba(92, 174, 166, 0.14);
   flex: 0 0 auto;
   font-size: 1.1rem;
 }
 
 .exQuickLabel {
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.9);
+  color: #000000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* footer hint pinned */
+/* Footer hint */
 .exQuickHint {
   flex: 0 0 auto;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
-  border-top: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  border-top: 0.0625rem solid #eeeeee;
   color: var(--ex-muted);
   font-weight: 600;
   font-size: 0.92rem;
@@ -348,12 +356,21 @@
   min-height: 2.75rem !important;
   border-radius: 0.65rem !important;
   border: 0.0625rem solid var(--ex-border) !important;
+  background: #ffffff !important;
   box-shadow: none !important;
 }
 
 .rs__control--is-focused {
-  border-color: rgba(0, 232, 170, 0.65) !important;
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12) !important;
+  border-color: #5caea6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__single-value {
+  color: #000000 !important;
+}
+
+.rs__placeholder {
+  color: #988686 !important;
 }
 
 .rs__value-container {
@@ -363,14 +380,28 @@
 .rs__menu {
   border-radius: 0.65rem !important;
   overflow: hidden;
+  border: 1px solid #e5e5e5;
 }
 
 .rs__menu-list {
-  max-height: 13.75rem !important; /* 220px -> rem */
+  max-height: 13.75rem !important;
 }
 
-/* ---------------- Breakpoints ---------------- */
-/* 2560+ */
+.rs__option {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.rs__option--is-focused {
+  background: rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__option--is-selected {
+  background: #5caea6 !important;
+  color: #ffffff !important;
+}
+
+/* Breakpoints */
 @media (min-width: 160rem) {
   :root {
     --ex-pad: 1.5rem;
@@ -402,7 +433,6 @@
   }
 }
 
-/* 1440 */
 @media (min-width: 90rem) and (max-width: 159.9375rem) {
   :root {
     --ex-pad: 1.25rem;
@@ -417,14 +447,12 @@
   }
 }
 
-/* 1024 */
 @media (max-width: 64rem) {
   .exCard {
     max-width: 54rem;
   }
 }
 
-/* 768 */
 @media (max-width: 48rem) {
   .exPage {
     padding: 0.6rem;
@@ -432,8 +460,8 @@
 
   .exCard {
     max-width: 44rem;
-    height: auto; /* ✅ better on tablets */
-    min-height: 90vh; /* ✅ still tall */
+    height: auto;
+    min-height: 90vh;
   }
 
   .exLayout {
@@ -452,13 +480,11 @@
     width: 100%;
   }
 
-  /* quick buttons in 2 columns on tablet */
   .exQuickGrid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-/* 425 */
 @media (max-width: 26.5625rem) {
   .exPage {
     padding: 0.5rem;
@@ -482,7 +508,6 @@
     height: 2.6rem;
   }
 
-  /* quick buttons go 1 column on mobile */
   .exQuickGrid {
     grid-template-columns: 1fr;
   }

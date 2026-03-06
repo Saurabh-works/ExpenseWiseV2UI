@@ -1,9 +1,9 @@
 :root {
-  --dash-bg: #c4dcec;
-  --dash-border: rgba(15, 23, 42, 0.1);
-  --dash-muted: rgba(15, 23, 42, 0.6);
-  --dash-shadow: 0 0.75rem 2rem rgba(15, 23, 42, 0.08);
-  --dash-accent: var(--ts-accent, #00e8aa);
+  --dash-bg: #ffffff;
+  --dash-border: #e5e5e5;
+  --dash-muted: #988686;
+  --dash-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+  --dash-accent: var(--ts-accent, #5caea6);
 }
 
 .dashPage {
@@ -12,6 +12,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 0.75rem;
+  background: #f6f6f6;
 }
 
 .dashCard {
@@ -24,13 +25,16 @@
   padding: 1rem;
 }
 
-.dashHeader { margin-bottom: 0.75rem; }
+.dashHeader {
+  margin-bottom: 0.75rem;
+}
 
 .dashTitle {
   margin: 0;
   font-size: 1.35rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.02em;
+  color: #000000;
 }
 
 .dashSub {
@@ -44,14 +48,27 @@
   padding: 0.65rem 0.8rem;
   border-radius: 0.7rem;
   border: 0.0625rem solid var(--dash-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #f8f8f8;
   font-weight: 500;
 }
-.dashErr { color: crimson; }
-.dashInfo { color: rgba(15, 23, 42, 0.85); }
 
-.dashSection { margin-top: 1.5rem; }
-.dashSectionHead { margin-bottom: 0.6rem; }
+.dashErr {
+  color: #a94442;
+  background: rgba(229, 115, 115, 0.12);
+  border-color: rgba(229, 115, 115, 0.3);
+}
+
+.dashInfo {
+  color: #000000;
+}
+
+.dashSection {
+  margin-top: 1.5rem;
+}
+
+.dashSectionHead {
+  margin-bottom: 0.6rem;
+}
 
 .dashRow {
   display: flex;
@@ -64,8 +81,9 @@
 .dashH3 {
   margin: 0;
   font-size: 1.05rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 1rem;
+  color: #000000;
 }
 
 .dashFilter {
@@ -85,7 +103,7 @@
 .dashLabel {
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(15, 23, 42, 0.85);
+  color: #000000;
 }
 
 .dashSelect {
@@ -95,11 +113,13 @@
   border: 0.0625rem solid var(--dash-border);
   outline: none;
   font-size: 1rem;
-  background: #fff;
+  background: #ffffff;
+  color: #000000;
 }
+
 .dashSelect:focus {
-  border-color: rgba(0, 232, 170, 0.65);
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12);
+  border-color: #5caea6;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12);
 }
 
 /* Table */
@@ -108,80 +128,108 @@
   overflow: auto;
   border-radius: 0.85rem;
   border: 0.0625rem solid var(--dash-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
 }
+
 .dashTable {
   width: 100%;
   border-collapse: collapse;
   min-width: 52rem;
 }
+
 .dashTable thead th {
   text-align: left;
   padding: 0.8rem 0.85rem;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   border-bottom: 0.0625rem solid var(--dash-border);
+  background: #f1f1f1;
+  color: #000000;
 }
+
 .dashTable tbody td {
   padding: 0.75rem 0.85rem;
-  border-bottom: 0.0625rem solid rgba(15, 23, 42, 0.08);
+  border-bottom: 0.0625rem solid #eeeeee;
   font-size: 0.95rem;
+  color: #000000;
 }
-.dashTable tbody tr:hover td { background: rgba(255, 255, 255, 0.7); }
+
+.dashTable tbody tr:hover td {
+  background: #f9f9f9;
+}
+
 .emptyCell {
   text-align: center;
   color: var(--dash-muted);
   font-weight: 500;
   padding: 1.05rem 0.9rem;
 }
-.amt { text-align: right; font-variant-numeric: tabular-nums; }
+
+.amt {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
 .desc {
   max-width: 22rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.typeExpense { font-weight: 500; color: rgba(220, 38, 38, 0.9); text-transform: capitalize; }
-.typeIncome { font-weight: 500; color: rgba(16, 185, 129, 0.95); text-transform: capitalize; }
+
+.typeExpense {
+  font-weight: 600;
+  color: #e57373;
+  text-transform: capitalize;
+}
+
+.typeIncome {
+  font-weight: 600;
+  color: #66bb6a;
+  text-transform: capitalize;
+}
 
 /* Bar chart card */
 .dashChartCard {
   border-radius: 0.85rem;
   border: 0.0625rem solid var(--dash-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
   padding: 0.85rem;
   overflow: hidden;
 }
-.dashChartTall { height: 260px; }
 
-/* ✅ Breakdown: stable height + NO overflow mess */
+.dashChartTall {
+  height: 260px;
+}
+
+/* Breakdown */
 .dashBreakdown {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 0.85rem;
   align-items: stretch;
-  height: 360px; /* a bit bigger so it never overlaps totals */
+  height: 360px;
 }
 
 .dashPieCard,
 .dashCatsCard {
   border-radius: 0.85rem;
   border: 0.0625rem solid var(--dash-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
   padding: 0.85rem;
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* ✅ prevent bleed/overlap */
+  overflow: hidden;
 }
 
 .dashMiniTitle {
-  font-weight: 500;
-  color: rgba(15, 23, 42, 0.9);
+  font-weight: 600;
+  color: #000000;
   margin-bottom: 1.4rem;
 }
 
-/* ✅ Make pie always fit its box */
+/* Pie */
 .dashPieWrap {
   flex: 1;
   min-height: 0;
@@ -189,12 +237,13 @@
   align-items: center;
   justify-content: center;
 }
+
 .dashPieWrap canvas {
   max-width: 100% !important;
   max-height: 100% !important;
 }
 
-/* ✅ Categories scrolling (always visible) */
+/* Categories */
 .dashCatsList {
   flex: 1;
   min-height: 0;
@@ -212,15 +261,17 @@
   gap: 0.75rem;
   padding: 0.55rem 0.6rem;
   border-radius: 0.7rem;
-  border: 0.0625rem solid rgba(15, 23, 42, 0.06);
-  background: rgba(255, 255, 255, 0.45);
+  border: 0.0625rem solid #eeeeee;
+  background: #fafafa;
 }
+
 .catLeft {
   display: flex;
   align-items: center;
   gap: 0.55rem;
   min-width: 0;
 }
+
 .catDot {
   width: 0.7rem;
   height: 0.7rem;
@@ -228,13 +279,15 @@
   flex: 0 0 auto;
   box-shadow: 0 0 0 0.12rem rgba(255, 255, 255, 0.9);
 }
+
 .catName {
   font-weight: 500;
-  color: rgba(15, 23, 42, 0.88);
+  color: #000000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .catRight {
   display: flex;
   align-items: baseline;
@@ -242,8 +295,16 @@
   font-variant-numeric: tabular-nums;
   flex: 0 0 auto;
 }
-.catPct { font-weight: 500; color: rgba(15, 23, 42, 0.7); }
-.catAmt { font-weight: 500; color: rgba(15, 23, 42, 0.92); }
+
+.catPct {
+  font-weight: 500;
+  color: #988686;
+}
+
+.catAmt {
+  font-weight: 600;
+  color: #000000;
+}
 
 /* Totals */
 .dashTotals {
@@ -251,27 +312,53 @@
   grid-template-columns: 1fr 1fr;
   gap: 0.85rem;
 }
+
 .totalBox {
   border-radius: 0.85rem;
   border: 0.0625rem solid var(--dash-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
   padding: 0.9rem;
 }
-.totalLabel { font-weight: 500; color: rgba(15, 23, 42, 0.85); }
-.totalValue { margin-top: 0.35rem; font-size: 1.35rem; font-weight: 500; }
-.totalMeta { margin-top: 0.25rem; color: var(--dash-muted); font-weight: 500; font-size: 0.95rem; }
 
-/* react-select styling (same as Income dropdown) */
+.totalLabel {
+  font-weight: 500;
+  color: #988686;
+}
+
+.totalValue {
+  margin-top: 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.totalMeta {
+  margin-top: 0.25rem;
+  color: var(--dash-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* react-select styling */
 .rs__control {
-  min-height: 2.55rem !important; /* match dashSelect height */
+  min-height: 2.55rem !important;
   border-radius: 0.65rem !important;
   border: 0.0625rem solid var(--dash-border) !important;
+  background: #ffffff !important;
   box-shadow: none !important;
 }
 
 .rs__control--is-focused {
-  border-color: rgba(0, 232, 170, 0.65) !important;
-  box-shadow: 0 0 0 0.2rem rgba(0, 232, 170, 0.12) !important;
+  border-color: #5caea6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__single-value {
+  color: #000000 !important;
+}
+
+.rs__placeholder {
+  color: #988686 !important;
 }
 
 .rs__value-container {
@@ -281,57 +368,133 @@
 .rs__menu {
   border-radius: 0.65rem !important;
   overflow: hidden;
+  border: 1px solid #e5e5e5;
 }
 
 .rs__menu-list {
   max-height: 220px !important;
 }
 
-/* ---------------- Breakpoints (5) ---------------- */
+.rs__option {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.rs__option--is-focused {
+  background: rgba(92, 174, 166, 0.12) !important;
+}
+
+.rs__option--is-selected {
+  background: #5caea6 !important;
+  color: #ffffff !important;
+}
+
+/* ---------------- Breakpoints ---------------- */
 
 /* <= 1024 */
 @media (max-width: 64rem) {
-  .dashCard { max-width: 54rem; }
+  .dashCard {
+    max-width: 54rem;
+  }
 
   .dashBreakdown {
     grid-template-columns: 1fr;
-    height: auto; /* ✅ stack = no fixed height */
+    height: auto;
   }
 
-  .dashPieWrap { height: 260px; }   /* stable pie height */
-  .dashCatsList { max-height: 260px; } /* keep scroll */
+  .dashPieWrap {
+    height: 260px;
+  }
+
+  .dashCatsList {
+    max-height: 260px;
+  }
 }
 
 /* <= 768 */
 @media (max-width: 48rem) {
-  .dashCard { max-width: 44rem; padding: 0.95rem; }
-  .dashTable { min-width: 46rem; }
-  .dashTotals { grid-template-columns: 1fr; }
-  .dashChartTall { height: 240px; }
+  .dashCard {
+    max-width: 44rem;
+    padding: 0.95rem;
+  }
+
+  .dashTable {
+    min-width: 46rem;
+  }
+
+  .dashTotals {
+    grid-template-columns: 1fr;
+  }
+
+  .dashChartTall {
+    height: 240px;
+  }
 }
 
 /* <= 425 */
 @media (max-width: 26.5625rem) {
-  .dashPage { padding: 0.5rem; }
-  .dashTitle { font-size: 1.2rem; }
-  .dashSelect { height: 2.45rem; }
-  .dashTable { min-width: 44rem; }
+  .dashPage {
+    padding: 0.5rem;
+  }
+
+  .dashTitle {
+    font-size: 1.2rem;
+  }
+
+  .dashSelect {
+    height: 2.45rem;
+  }
+
+  .dashTable {
+    min-width: 44rem;
+  }
 }
 
 /* >= 1440 */
 @media (min-width: 90rem) {
-  .dashCard { max-width: 68rem; padding: 1.25rem; }
-  .dashTitle { font-size: 1.5rem; }
-  .dashChartTall { height: 280px; }
-  .dashBreakdown { height: 400px; }
+  .dashCard {
+    max-width: 68rem;
+    padding: 1.25rem;
+  }
+
+  .dashTitle {
+    font-size: 1.5rem;
+  }
+
+  .dashChartTall {
+    height: 280px;
+  }
+
+  .dashBreakdown {
+    height: 400px;
+  }
 }
 
 /* >= 2560 */
 @media (min-width: 160rem) {
-  .dashCard { max-width: 82rem; padding: 1.5rem; }
-  .dashTitle { font-size: 1.7rem; }
-  .dashSelect { height: 3rem; font-size: 1.05rem; }
-  .totalValue { font-size: 1.55rem; }
-  .dashChartTall { height: 320px; }
-  .dashBreakdown { height: 460px; }
+  .dashCard {
+    max-width: 82rem;
+    padding: 1.5rem;
+  }
+
+  .dashTitle {
+    font-size: 1.7rem;
+  }
+
+  .dashSelect {
+    height: 3rem;
+    font-size: 1.05rem;
+  }
+
+  .totalValue {
+    font-size: 1.55rem;
+  }
+
+  .dashChartTall {
+    height: 320px;
+  }
+
+  .dashBreakdown {
+    height: 460px;
+  }
 }

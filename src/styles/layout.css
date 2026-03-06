@@ -1,15 +1,15 @@
 :root {
-  /* TrueSendr vibe */
-  --ts-accent: #00e8aa;
-  --ts-accent-2: #7dc4b1;
+  /* ExpenseWise Theme */
+  --ts-accent: #5caea6;
+  --ts-accent-2: #3f8f88;
 
-  --ts-bg: #ffffff;
-  --ts-sidebar-bg: #d8fbec; /* light peach */
-  --ts-header-bg: #386077;
+  --ts-bg: #f6f6f6;
+  --ts-sidebar-bg: #000000;
+  --ts-header-bg: #2B2B2B;
 
-  --ts-text: #0f172a;
-  --ts-muted: rgba(15, 23, 42, 0.6);
-  --ts-border: rgba(15, 23, 42, 0.08);
+  --ts-text: #000000;
+  --ts-muted: #988686;
+  --ts-border: #e5e5e5;
 
   --ts-sidebar-w: 16.5rem;
   --ts-header-h: 3.75rem;
@@ -44,13 +44,13 @@ body {
   height: 100vh;
   display: flex;
   background: var(--ts-bg);
-  overflow: hidden; /* stops body scroll + weird gaps */
+  overflow: hidden;
 }
 
 /* right side (header + content) */
 .appMain {
   flex: 1;
-  min-width: 0; /* critical for truncation + preventing overflow */
+  min-width: 0;
   display: flex;
   flex-direction: column;
   background: var(--ts-bg);
@@ -59,11 +59,10 @@ body {
 /* page content area */
 .appContent {
   flex: 1;
-  min-height: 0; /* allows scrolling inside */
+  min-height: 0;
   overflow: auto;
-
-  /* TrueSendr has very light spacing, not big padding */
   padding: 0.50rem;
+  background: var(--ts-bg);
 }
 
 /* Optional: nicer scrollbar (kept minimal) */
@@ -71,7 +70,7 @@ body {
   width: 0.75rem;
 }
 .appContent::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.12);
+  background: #d1d0d0;
   border-radius: 999rem;
 }
 
@@ -99,7 +98,6 @@ body {
     padding: 0.55rem;
   }
 
-  /* hide username earlier so header stays clean */
   .tsUserName {
     display: none;
   }
@@ -125,8 +123,8 @@ body {
 .tsHeader {
   height: var(--ts-header-h);
   background: var(--ts-header-bg);
-  border-bottom: 0.0625rem solid var(--ts-border);
-
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -141,7 +139,7 @@ body {
 .tsUserNameOnly {
   font-size: 0.95rem;
   font-weight: 500;
-  color:white;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,7 +160,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: white;
+  color: #ffffff;
 }
 
 .tsHeaderRight {
@@ -181,8 +179,9 @@ body {
   height: 2.25rem;
   width: 2.25rem;
   border-radius: 0.6rem;
-  border: 0.0625rem solid var(--ts-border);
-  background: #fff;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.12);
+  background: #ffffff;
+  color: #000000;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -195,9 +194,9 @@ body {
   align-items: center;
   gap: 0.6rem;
   padding: 0.35rem 0.6rem;
-  border: 0.0625rem solid var(--ts-border);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.12);
   border-radius: 999rem;
-  background: #fff;
+  background: #ffffff;
   max-width: 14rem;
 }
 
@@ -205,8 +204,8 @@ body {
   height: 1.75rem;
   width: 1.75rem;
   border-radius: 999rem;
-  background: rgba(255, 106, 0, 0.15);
-  color: var(--ts-accent);
+  background: rgba(92, 174, 166, 0.15);
+  color: #5caea6;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -220,6 +219,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #000000;
 }
 
 .tsBtn {
@@ -233,19 +233,21 @@ body {
 
 .tsBtnPrimary {
   background: var(--ts-accent);
-  color: #fff;
+  color: #ffffff;
 }
-.tsBtnPrimary:hover { background: var(--ts-accent-2); }
+.tsBtnPrimary:hover { 
+  background: var(--ts-accent-2); 
+}
 
 /* -----------------------------
-   Sidebar (TrueSendr simple)
+   Sidebar
 -------------------------------- */
 .tsSidebar {
   width: var(--ts-sidebar-w);
   height: 100vh;
   background: var(--ts-sidebar-bg);
 
-  border-right: 0.0625rem solid rgba(255, 106, 0, 0.16);
+  border-right: 0.0625rem solid rgba(255, 255, 255, 0.08);
 
   display: flex;
   flex-direction: column;
@@ -254,7 +256,6 @@ body {
   top: 0;
   z-index: 30;
 
-  /* IMPORTANT: remove "surrounded padding" feel */
   padding: 0;
 }
 
@@ -279,11 +280,11 @@ body {
 
 .tsBrandTag {
   font-size: 0.9rem;
-  color: rgba(15, 23, 42, 0.55);
+  color: #988686;
 }
 
 .tsNav {
-  padding: 0.5rem 0.75rem 1rem 0.75rem; /* small, not “boxed” */
+  padding: 0.5rem 0.75rem 1rem 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -295,12 +296,12 @@ body {
   gap: 0.75rem;
 
   text-decoration: none;
-  color: rgba(15, 23, 42, 0.8);
+  color: #d1d0d0;
 
   height: 2.5rem;
   padding: 0 0.75rem;
 
-  border-radius: 0.55rem; /* subtler than before */
+  border-radius: 0.55rem;
   border: 0.0625rem solid transparent;
 }
 
@@ -313,7 +314,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  background: rgba(15, 23, 42, 0.06);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .tsNavLabel {
@@ -321,7 +322,6 @@ body {
   font-size: 0.98rem;
 }
 
-/* Active = strong orange pill like TrueSendr */
 .tsNavItem.isActive {
   background: var(--ts-accent);
   color: #ffffff;
@@ -334,9 +334,9 @@ body {
 .tsNavItem.isActive .tsMuiIcon {
   color: #ffffff !important;
 }
-/* hover = subtle */
+
 .tsNavItem:hover {
-  background: rgba(0, 232, 170, 0.14);
+  background: rgba(92, 174, 166, 0.14);
 }
 
 .tsNavItem.isActive:hover {
@@ -383,7 +383,7 @@ body {
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(2, 6, 23, 0.45);
+    background: rgba(0, 0, 0, 0.45);
     border: none;
     cursor: pointer;
     opacity: 0;

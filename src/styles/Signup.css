@@ -1,3 +1,133 @@
-/* Signup uses same clean theme as Login */
-@import "./Login.css";
+/* Page background */
+.authPage {
+  min-height: 100vh;
+  background: #f6f6f6;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
 
+/* Center box */
+.authBox {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Titles */
+.authTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #000000;
+  text-align: center;
+}
+
+.authSub {
+  margin: 8px 0 18px;
+  text-align: center;
+  color: #988686;
+  font-size: 14px;
+}
+
+/* Form */
+.authForm {
+  display: grid;
+  gap: 14px;
+}
+
+.authLabel {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.authInput {
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #d1d0d0;
+  padding: 0 12px;
+  font-size: 14px;
+  background: #ffffff;
+  color: #000000;
+  outline: none;
+}
+
+.authInput::placeholder {
+  color: #988686;
+}
+
+.authInput:focus {
+  border-color: #5caea6;
+  box-shadow: 0 0 0 3px rgba(92, 174, 166, 0.18);
+}
+
+/* Button */
+.authBtn {
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: #000000;
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.authBtn:hover {
+  background: #5caea6;
+}
+
+.authBtn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+/* Error */
+.authError {
+  margin: 10px 0 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(229, 115, 115, 0.12);
+  border: 1px solid rgba(229, 115, 115, 0.3);
+  color: #a94442;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Switch row */
+.authSwitch {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #988686;
+}
+
+.authLink {
+  font-weight: 800;
+  color: #000000;
+  text-decoration: none;
+}
+
+.authLink:hover {
+  color: #5caea6;
+  text-decoration: underline;
+}
+
+.authInput:disabled {
+  opacity: 0.85;
+}
+
+.authLink.isDisabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
