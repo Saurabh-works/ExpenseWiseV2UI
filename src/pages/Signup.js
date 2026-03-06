@@ -17,16 +17,14 @@ export default function Signup() {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
+
     setError("");
     setLoading(true);
 
     try {
-      const res = await post("/auth/signup", { name, email, password });
+      await post("/auth/signup", { name, email, password });
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data.userId);
-
-      login();
+      // go to login page
       nav("/login", { replace: true });
     } catch (err) {
       setError(err?.message || "Signup failed");

@@ -16,7 +16,7 @@ export const AuthContext = React.createContext(null);
 
 function ProtectedRoute({ children }) {
   const { isAuthed } = React.useContext(AuthContext);
-  if (!isAuthed) return <Navigate to="/login" replace />;
+  if (!isAuthed) return <Navigate to="/" replace />;
   return children;
 }
 

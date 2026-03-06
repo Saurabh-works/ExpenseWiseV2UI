@@ -48,7 +48,7 @@ export default function Header({ onToggleSidebar }) {
           type="button"
           onClick={() => {
             logout?.();
-            nav("/login");
+            nav("/", { replace: true });
           }}
         >
           Logout
