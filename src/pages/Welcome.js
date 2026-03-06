@@ -80,15 +80,15 @@ export default function Welcome() {
             <div className="previewSummary">
               <div className="summaryCard">
                 <div className="summaryLabel">Income</div>
-                <div className="summaryValue income">₹ 27,656</div>
+                <div className="summaryValue income">₹ 90,000</div>
               </div>
               <div className="summaryCard">
                 <div className="summaryLabel">Expense</div>
-                <div className="summaryValue expense">₹ 19,546</div>
+                <div className="summaryValue expense">₹ 59,546</div>
               </div>
               <div className="summaryCard">
                 <div className="summaryLabel">Balance</div>
-                <div className="summaryValue balance">₹ 8,110</div>
+                <div className="summaryValue balance">₹ 30,454</div>
               </div>
             </div>
 

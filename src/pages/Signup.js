@@ -27,7 +27,7 @@ export default function Signup() {
       localStorage.setItem("userId", res.data.userId);
 
       login();
-      nav("/app/dashboard", { replace: true });
+      nav("/login", { replace: true });
     } catch (err) {
       setError(err?.message || "Signup failed");
       setLoading(false);
