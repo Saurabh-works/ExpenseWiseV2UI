@@ -149,7 +149,7 @@ export default function Welcome() {
 
         <div className="footerRight">
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/saurabh-workplace/"
             target="_blank"
             rel="noreferrer"
             className="socialLink"
@@ -159,7 +159,7 @@ export default function Welcome() {
           </a>
 
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/its_saurabh_15/"
             target="_blank"
             rel="noreferrer"
             className="socialLink"
@@ -169,7 +169,7 @@ export default function Welcome() {
           </a>
 
           <a
-            href="mailto:yourmail@example.com"
+            href="mailto:saurabhshindework@gmail.com"
             className="socialLink"
             aria-label="Email"
           >
