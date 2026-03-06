@@ -1,37 +1,45 @@
 :root {
   /* -----------------------------
      ExpenseWise Global Theme
-     Change theme from here only
+     Modern Fintech / SaaS Theme
   -------------------------------- */
-  --ts-accent: #5caea6;
-  --ts-accent-2: #3f8f88;
 
-  --ts-sidebar-bg: #000000;
-  --ts-header-bg: #2b2b2b;
-  --ts-page-bg: #f6f6f6;
+  /* Brand */
+  --ts-accent: #14b8a6;
+  --ts-accent-2: #0f766e;
+
+  /* Layout */
+  --ts-sidebar-bg: #111827;
+  --ts-header-bg: #1f2937;
+  --ts-page-bg: #f4f7fb;
   --ts-card-bg: #ffffff;
 
-  --ts-text: #000000;
+  /* Text */
+  --ts-text: #111827;
   --ts-text-light: #ffffff;
-  --ts-muted: #988686;
+  --ts-muted: #6b7280;
 
-  --ts-border: #e5e5e5;
-  --ts-border-soft: #eeeeee;
-  --ts-table-head: #f1f1f1;
+  /* Borders / surfaces */
+  --ts-border: #e5e7eb;
+  --ts-border-soft: #f1f5f9;
+  --ts-table-head: #f8fafc;
 
-  --ts-success: #66bb6a;
-  --ts-danger: #e57373;
-  --ts-warning: #ffb74d;
+  /* Status */
+  --ts-success: #16a34a;
+  --ts-danger: #dc2626;
+  --ts-warning: #f59e0b;
 
-  --ts-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
-  --ts-shadow-soft: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+  /* Shadows */
+  --ts-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --ts-shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.06);
 
-  --ts-scrollbar: #d1cfd0;
+  /* Misc */
+  --ts-scrollbar: #cbd5e1;
 
   --ts-sidebar-w: 16.5rem;
   --ts-header-h: 3.75rem;
 
-  --ts-radius: 0.65rem;
+  --ts-radius: 0.75rem;
   --ts-radius-pill: 999rem;
 
   --ts-pad: 1rem;
@@ -51,8 +59,15 @@ body {
   margin: 0;
   background: var(--ts-page-bg);
   color: var(--ts-text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
 }
+
 
 #root {
   height: 100%;
