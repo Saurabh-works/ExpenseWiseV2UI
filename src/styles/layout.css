@@ -1,38 +1,57 @@
 :root {
-  /* ExpenseWise Theme */
+  /* -----------------------------
+     ExpenseWise Global Theme
+     Change theme from here only
+  -------------------------------- */
   --ts-accent: #5caea6;
   --ts-accent-2: #3f8f88;
 
-  --ts-bg: #f6f6f6;
   --ts-sidebar-bg: #000000;
-  --ts-header-bg: #2B2B2B;
+  --ts-header-bg: #2b2b2b;
+  --ts-page-bg: #f6f6f6;
+  --ts-card-bg: #ffffff;
 
   --ts-text: #000000;
+  --ts-text-light: #ffffff;
   --ts-muted: #988686;
+
   --ts-border: #e5e5e5;
+  --ts-border-soft: #eeeeee;
+  --ts-table-head: #f1f1f1;
+
+  --ts-success: #66bb6a;
+  --ts-danger: #e57373;
+  --ts-warning: #ffb74d;
+
+  --ts-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  --ts-shadow-soft: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+
+  --ts-scrollbar: #d1cfd0;
 
   --ts-sidebar-w: 16.5rem;
   --ts-header-h: 3.75rem;
 
   --ts-radius: 0.65rem;
-  --ts-radius-pill: 0.75rem;
+  --ts-radius-pill: 999rem;
 
   --ts-pad: 1rem;
 }
 
 /* base */
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--ts-bg); color: var(--ts-text); }
-
-
-/* -----------------------------
-   App Layout (Sidebar + Header + Content)
-   Clean, no extra fluff
--------------------------------- */
+* {
+  box-sizing: border-box;
+}
 
 html,
 body {
   height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ts-page-bg);
+  color: var(--ts-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 #root {
@@ -43,7 +62,7 @@ body {
 .appShell {
   height: 100vh;
   display: flex;
-  background: var(--ts-bg);
+  background: var(--ts-page-bg);
   overflow: hidden;
 }
 
@@ -53,7 +72,7 @@ body {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  background: var(--ts-bg);
+  background: var(--ts-page-bg);
 }
 
 /* page content area */
@@ -61,70 +80,29 @@ body {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 0.50rem;
-  background: var(--ts-bg);
+  padding: 0.5rem;
+  background: var(--ts-page-bg);
 }
 
-/* Optional: nicer scrollbar (kept minimal) */
+/* scrollbar */
 .appContent::-webkit-scrollbar {
   width: 0.75rem;
 }
+
 .appContent::-webkit-scrollbar-thumb {
-  background: #d1d0d0;
+  background: var(--ts-scrollbar);
   border-radius: 999rem;
 }
 
 /* -----------------------------
-   Breakpoints
--------------------------------- */
-
-/* <= 1024 */
-@media (max-width: 64rem) {
-  .appContent {
-    padding: 1rem;
-  }
-}
-
-/* <= 768 */
-@media (max-width: 48rem) {
-  .appContent {
-    padding: 0.9rem;
-  }
-}
-
-/* <= 425 */
-@media (max-width: 26.5625rem) {
-  .appContent {
-    padding: 0.55rem;
-  }
-
-  .tsUserName {
-    display: none;
-  }
-}
-
-/* >= 1440 */
-@media (min-width: 90rem) {
-  .appContent {
-    padding: 1.5rem;
-  }
-}
-
-/* >= 2560 */
-@media (min-width: 160rem) {
-  .appContent {
-    padding: 2rem;
-  }
-}
-
-/* -----------------------------
-   Header (flat, minimal)
+   Header
 -------------------------------- */
 .tsHeader {
   height: var(--ts-header-h);
   background: var(--ts-header-bg);
   border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -139,7 +117,7 @@ body {
 .tsUserNameOnly {
   font-size: 0.95rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--ts-text-light);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -160,7 +138,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #ffffff;
+  color: var(--ts-text-light);
 }
 
 .tsHeaderRight {
@@ -174,14 +152,14 @@ body {
   display: none !important;
 }
 
-/* icon button (simple, not “cardy”) */
+/* icon button */
 .tsIconBtn {
   height: 2.25rem;
   width: 2.25rem;
   border-radius: 0.6rem;
   border: 0.0625rem solid rgba(255, 255, 255, 0.12);
-  background: #ffffff;
-  color: #000000;
+  background: var(--ts-card-bg);
+  color: var(--ts-text);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -195,8 +173,8 @@ body {
   gap: 0.6rem;
   padding: 0.35rem 0.6rem;
   border: 0.0625rem solid rgba(255, 255, 255, 0.12);
-  border-radius: 999rem;
-  background: #ffffff;
+  border-radius: var(--ts-radius-pill);
+  background: var(--ts-card-bg);
   max-width: 14rem;
 }
 
@@ -205,7 +183,7 @@ body {
   width: 1.75rem;
   border-radius: 999rem;
   background: rgba(92, 174, 166, 0.15);
-  color: #5caea6;
+  color: var(--ts-accent);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -219,13 +197,13 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #000000;
+  color: var(--ts-text);
 }
 
 .tsBtn {
   height: 2.25rem;
   padding: 0 0.95rem;
-  border-radius: 0.65rem;
+  border-radius: var(--ts-radius);
   border: none;
   cursor: pointer;
   font-weight: 500;
@@ -233,10 +211,11 @@ body {
 
 .tsBtnPrimary {
   background: var(--ts-accent);
-  color: #ffffff;
+  color: var(--ts-text-light);
 }
-.tsBtnPrimary:hover { 
-  background: var(--ts-accent-2); 
+
+.tsBtnPrimary:hover {
+  background: var(--ts-accent-2);
 }
 
 /* -----------------------------
@@ -246,7 +225,6 @@ body {
   width: var(--ts-sidebar-w);
   height: 100vh;
   background: var(--ts-sidebar-bg);
-
   border-right: 0.0625rem solid rgba(255, 255, 255, 0.08);
 
   display: flex;
@@ -280,7 +258,7 @@ body {
 
 .tsBrandTag {
   font-size: 0.9rem;
-  color: #988686;
+  color: var(--ts-muted);
 }
 
 .tsNav {
@@ -324,7 +302,7 @@ body {
 
 .tsNavItem.isActive {
   background: var(--ts-accent);
-  color: #ffffff;
+  color: var(--ts-text-light);
 }
 
 .tsNavItem.isActive .tsNavIcon {
@@ -332,7 +310,7 @@ body {
 }
 
 .tsNavItem.isActive .tsMuiIcon {
-  color: #ffffff !important;
+  color: var(--ts-text-light) !important;
 }
 
 .tsNavItem:hover {
@@ -352,19 +330,31 @@ body {
 }
 
 /* Overlay */
-.tsOverlay { display: none; }
+.tsOverlay {
+  display: none;
+}
 
 /* -----------------------------
-   Responsive breakpoints
+   Breakpoints
 -------------------------------- */
 
 /* <= 1024 */
 @media (max-width: 64rem) {
-  :root { --ts-sidebar-w: 15.5rem; }
+  :root {
+    --ts-sidebar-w: 15.5rem;
+  }
+
+  .appContent {
+    padding: 1rem;
+  }
 }
 
-/* <= 768: sidebar becomes drawer */
+/* <= 768 */
 @media (max-width: 48rem) {
+  .appContent {
+    padding: 0.9rem;
+  }
+
   .tsHamburger {
     display: inline-flex !important;
   }
@@ -377,7 +367,9 @@ body {
     transition: transform 180ms ease;
   }
 
-  .tsSidebar.isOpen { transform: translateX(0); }
+  .tsSidebar.isOpen {
+    transform: translateX(0);
+  }
 
   .tsOverlay {
     display: block;
@@ -397,13 +389,29 @@ body {
     pointer-events: auto;
   }
 
-  .tsSidebarClose { display: inline-flex; }
+  .tsSidebarClose {
+    display: inline-flex;
+  }
 }
 
 /* <= 425 */
 @media (max-width: 26.5625rem) {
-  .tsHeader { padding: 0 0.85rem; }
-  .tsUser { max-width: 10rem; }
+  .appContent {
+    padding: 0.55rem;
+  }
+
+  .tsHeader {
+    padding: 0 0.85rem;
+  }
+
+  .tsUser {
+    max-width: 10rem;
+  }
+
+  .tsUserName {
+    display: none;
+  }
+
   .tsUserNameOnly {
     max-width: 8rem;
   }
@@ -411,8 +419,17 @@ body {
 
 /* >= 1440 */
 @media (min-width: 90rem) {
-  :root { --ts-sidebar-w: 17.5rem; }
-  .tsHeaderTitle { font-size: 1.12rem; }
+  :root {
+    --ts-sidebar-w: 17.5rem;
+  }
+
+  .appContent {
+    padding: 1.5rem;
+  }
+
+  .tsHeaderTitle {
+    font-size: 1.12rem;
+  }
 }
 
 /* >= 2560 */
@@ -421,7 +438,21 @@ body {
     --ts-sidebar-w: 19rem;
     --ts-header-h: 4.1rem;
   }
-  .tsHeaderTitle { font-size: 1.25rem; }
-  .tsBtn { height: 2.5rem; }
-  .tsIconBtn { height: 2.5rem; width: 2.5rem; }
+
+  .appContent {
+    padding: 2rem;
+  }
+
+  .tsHeaderTitle {
+    font-size: 1.25rem;
+  }
+
+  .tsBtn {
+    height: 2.5rem;
+  }
+
+  .tsIconBtn {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
 }

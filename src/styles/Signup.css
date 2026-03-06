@@ -1,7 +1,7 @@
 /* Page background */
 .authPage {
   min-height: 100vh;
-  background: #f6f6f6;
+  background: var(--ts-page-bg);
   display: grid;
   place-items: center;
   padding: 24px;
@@ -12,11 +12,11 @@
 .authBox {
   width: 100%;
   max-width: 420px;
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
+  background: var(--ts-card-bg);
+  border: 1px solid var(--ts-border);
   border-radius: 14px;
   padding: 28px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--ts-shadow-soft);
 }
 
 /* Titles */
@@ -24,14 +24,14 @@
   margin: 0;
   font-size: 28px;
   font-weight: 800;
-  color: #000000;
+  color: var(--ts-text);
   text-align: center;
 }
 
 .authSub {
   margin: 8px 0 18px;
   text-align: center;
-  color: #988686;
+  color: var(--ts-muted);
   font-size: 14px;
 }
 
@@ -46,26 +46,26 @@
   gap: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: #000000;
+  color: var(--ts-text);
 }
 
 .authInput {
   height: 44px;
   border-radius: 10px;
-  border: 1px solid #d1d0d0;
+  border: 1px solid var(--ts-scrollbar);
   padding: 0 12px;
   font-size: 14px;
-  background: #ffffff;
-  color: #000000;
+  background: var(--ts-card-bg);
+  color: var(--ts-text);
   outline: none;
 }
 
 .authInput::placeholder {
-  color: #988686;
+  color: var(--ts-muted);
 }
 
 .authInput:focus {
-  border-color: #5caea6;
+  border-color: var(--ts-accent);
   box-shadow: 0 0 0 3px rgba(92, 174, 166, 0.18);
 }
 
@@ -74,15 +74,15 @@
   height: 44px;
   border: none;
   border-radius: 10px;
-  background: #000000;
-  color: #ffffff;
+  background: var(--ts-sidebar-bg);
+  color: var(--ts-text-light);
   font-weight: 800;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .authBtn:hover {
-  background: #5caea6;
+  background: var(--ts-accent);
 }
 
 .authBtn:disabled {
@@ -97,7 +97,7 @@
   border-radius: 10px;
   background: rgba(229, 115, 115, 0.12);
   border: 1px solid rgba(229, 115, 115, 0.3);
-  color: #a94442;
+  color: var(--ts-danger);
   font-weight: 600;
   font-size: 14px;
 }
@@ -109,17 +109,17 @@
   justify-content: center;
   gap: 8px;
   font-size: 14px;
-  color: #988686;
+  color: var(--ts-muted);
 }
 
 .authLink {
   font-weight: 800;
-  color: #000000;
+  color: var(--ts-text);
   text-decoration: none;
 }
 
 .authLink:hover {
-  color: #5caea6;
+  color: var(--ts-accent);
   text-decoration: underline;
 }
 

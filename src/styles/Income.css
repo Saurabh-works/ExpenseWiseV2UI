@@ -1,12 +1,5 @@
-/* src/styles/Income.css */
-
+/* page specific sizing */
 :root {
-  --in-bg: #ffffff;
-  --in-border: #e5e5e5;
-  --in-muted: #988686;
-  --in-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
-  --in-accent: var(--ts-accent, #5caea6);
-
   --in-radius: 0.9rem;
   --in-gap: 0.85rem;
   --in-pad: 1rem;
@@ -15,12 +8,12 @@
 
 /* Page wrapper */
 .inPage {
-  min-height: calc(100vh - var(--ts-header-h, 3.75rem));
+  min-height: calc(100vh - var(--ts-header-h));
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding: 0.75rem;
-  background: #f6f6f6;
+  background: var(--ts-page-bg);
 }
 
 /* Main card */
@@ -30,10 +23,10 @@
   height: var(--in-card-h);
   position: relative;
 
-  background: var(--in-bg);
-  border: 0.0625rem solid var(--in-border);
+  background: var(--ts-card-bg);
+  border: 0.0625rem solid var(--ts-border);
   border-radius: var(--in-radius);
-  box-shadow: var(--in-shadow);
+  box-shadow: var(--ts-shadow-soft);
   padding: var(--in-pad);
 
   display: flex;
@@ -52,16 +45,15 @@
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #000000;
 }
 
 .inSub {
   margin: 0.25rem 0 0 0;
-  color: var(--in-muted);
+  color: var(--ts-muted);
   font-size: 0.95rem;
 }
 
-/* Top-center toast */
+/* Toast */
 .inToastWrap {
   position: absolute;
   top: 0.75rem;
@@ -76,9 +68,9 @@
   pointer-events: auto;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  border: 0.0625rem solid var(--in-border);
+  border: 0.0625rem solid var(--ts-border);
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.12);
+  box-shadow: var(--ts-shadow);
   font-weight: 700;
   text-align: center;
 
@@ -87,13 +79,13 @@
 }
 
 .inToast.isOk {
-  color: #66bb6a;
+  color: var(--ts-success);
   border-color: rgba(102, 187, 106, 0.28);
   background: rgba(102, 187, 106, 0.08);
 }
 
 .inToast.isErr {
-  color: #a94442;
+  color: var(--ts-danger);
   border-color: rgba(229, 115, 115, 0.3);
   background: rgba(229, 115, 115, 0.12);
 }
@@ -124,15 +116,15 @@
 .inFormCard,
 .inQuickCard {
   border-radius: 0.85rem;
-  border: 0.0625rem solid var(--in-border);
-  background: #ffffff;
+  border: 0.0625rem solid var(--ts-border);
+  background: var(--ts-card-bg);
   padding: 0.95rem;
 
   height: 100%;
   min-height: 0;
 }
 
-/* LEFT */
+/* Form card */
 .inFormCard {
   display: flex;
   flex-direction: column;
@@ -157,7 +149,7 @@
 }
 
 .inFormGrid::-webkit-scrollbar-thumb {
-  background: #d1d0d0;
+  background: var(--ts-scrollbar);
   border-radius: 999rem;
 }
 
@@ -178,26 +170,25 @@
 .inLabel {
   font-size: 0.92rem;
   font-weight: 600;
-  color: #000000;
 }
 
 .inInput {
   height: 2.75rem;
   padding: 0 0.85rem;
-  border-radius: 0.65rem;
-  border: 0.0625rem solid var(--in-border);
+  border-radius: var(--ts-radius);
+  border: 0.0625rem solid var(--ts-border);
   outline: none;
   font-size: 1rem;
-  background: #ffffff;
-  color: #000000;
+  background: var(--ts-card-bg);
+  color: var(--ts-text);
 }
 
 .inInput::placeholder {
-  color: #988686;
+  color: var(--ts-muted);
 }
 
 .inInput:focus {
-  border-color: #5caea6;
+  border-color: var(--ts-accent);
   box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12);
 }
 
@@ -221,16 +212,16 @@
   cursor: pointer;
   font-weight: 700;
   font-size: 1rem;
-  background: var(--in-accent);
-  color: #ffffff;
+  background: var(--ts-accent);
+  color: var(--ts-text-light);
   transition: background 0.2s ease;
 }
 
 .inSubmit:hover {
-  background: #3f8f88;
+  background: var(--ts-accent-2);
 }
 
-/* RIGHT */
+/* Quick categories */
 .inQuickCard {
   display: flex;
   flex-direction: column;
@@ -245,12 +236,11 @@
 
 .inQuickTitle {
   font-weight: 700;
-  color: #000000;
   margin-bottom: 0.25rem;
 }
 
 .inQuickSub {
-  color: var(--in-muted);
+  color: var(--ts-muted);
   font-weight: 600;
   font-size: 0.92rem;
 }
@@ -269,7 +259,7 @@
 }
 
 .inQuickScroll::-webkit-scrollbar-thumb {
-  background: #d1d0d0;
+  background: var(--ts-scrollbar);
   border-radius: 999rem;
 }
 
@@ -290,7 +280,7 @@
   gap: 0.6rem;
   padding: 0.65rem 0.7rem;
   border-radius: 0.75rem;
-  border: 0.0625rem solid #eeeeee;
+  border: 0.0625rem solid var(--ts-border-soft);
   background: #fafafa;
   cursor: pointer;
   text-align: left;
@@ -310,7 +300,7 @@
 .inQuickEmoji {
   width: 2rem;
   height: 2rem;
-  border-radius: 0.65rem;
+  border-radius: var(--ts-radius);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -321,7 +311,6 @@
 
 .inQuickLabel {
   font-weight: 700;
-  color: #000000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -331,32 +320,33 @@
   flex: 0 0 auto;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
-  border-top: 0.0625rem solid #eeeeee;
-  color: var(--in-muted);
+  border-top: 0.0625rem solid var(--ts-border-soft);
+  color: var(--ts-muted);
   font-weight: 600;
   font-size: 0.92rem;
 }
 
 /* react-select */
+
 .rs__control {
   min-height: 2.75rem !important;
-  border-radius: 0.65rem !important;
-  border: 0.0625rem solid var(--in-border) !important;
-  background: #ffffff !important;
+  border-radius: var(--ts-radius) !important;
+  border: 0.0625rem solid var(--ts-border) !important;
+  background: var(--ts-card-bg) !important;
   box-shadow: none !important;
 }
 
 .rs__control--is-focused {
-  border-color: #5caea6 !important;
+  border-color: var(--ts-accent) !important;
   box-shadow: 0 0 0 0.2rem rgba(92, 174, 166, 0.12) !important;
 }
 
 .rs__single-value {
-  color: #000000 !important;
+  color: var(--ts-text) !important;
 }
 
 .rs__placeholder {
-  color: #988686 !important;
+  color: var(--ts-muted) !important;
 }
 
 .rs__value-container {
@@ -364,9 +354,9 @@
 }
 
 .rs__menu {
-  border-radius: 0.65rem !important;
+  border-radius: var(--ts-radius) !important;
   overflow: hidden;
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--ts-border);
 }
 
 .rs__menu-list {
@@ -374,8 +364,8 @@
 }
 
 .rs__option {
-  background: #ffffff !important;
-  color: #000000 !important;
+  background: var(--ts-card-bg) !important;
+  color: var(--ts-text) !important;
 }
 
 .rs__option--is-focused {
@@ -383,11 +373,12 @@
 }
 
 .rs__option--is-selected {
-  background: #5caea6 !important;
-  color: #ffffff !important;
+  background: var(--ts-accent) !important;
+  color: var(--ts-text-light) !important;
 }
 
 /* Breakpoints */
+
 @media (min-width: 160rem) {
   :root {
     --in-pad: 1.5rem;
